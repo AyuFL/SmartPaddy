@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-const { regisUserHandler, loginUserHandler } = require('./handler');
+const { regisUserHandler, loginUserHandler, padiDatsaHandler, getPostDetail } = require('./handler');
 
 const routes = [
   {
@@ -12,6 +12,16 @@ const routes = [
     path: '/login',
     handler: loginUserHandler,
   },
+  {
+    method: 'POST',
+    path: '/scan',
+    handler: padiDatsaHandler,
+  },
+  {
+    method: 'GET',
+    path: '/post/{id}',
+    handler: getPostDetail,
+  }
 ];
 
 module.exports = routes;
