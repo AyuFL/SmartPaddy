@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 const { nanoid } = require('nanoid');
-const users = require('./users');
+const users = require('./data');
+const padiDatas = require('./data');
 
 const regisUserHandler = (request, h) => {
   const { name, email, password } = request.payload;
@@ -81,5 +82,106 @@ const loginUserHandler = (request, h) => {
   return response;
 };
 
+const padiDatsaHandler = (request, h) => {
+  const { userIds, imageUri } = request.payload;
+  const { label, score, desc, cPenanggulangan, cMengobati } = request.params;
 
-module.exports = { regisUserHandler, loginUserHandler };
+  const newPadiDatas = {
+    userIds,
+    imageUri
+  };
+
+  if (!userIds) {
+    const response = h.response({
+      status: 'fail',
+      message: 'User tidak ditemukan'
+    });
+    response.code(401);
+    return response;
+  };
+
+  if (!imageUri) {
+    const response = h.response({
+      status: 'fail',
+      message: 'Gambar tidak ditemukan'
+    });
+    response.code(401);
+    return response;
+  }
+
+  padiDatas.push(newPadiDatas);
+
+  const response = h.response({
+    status: 'success',
+    message: 'Data berhasil diterima',
+    padiDatas: {
+      imageUri,
+      label,
+      score,
+      desc,
+      cPenanggulangan,
+      cMengobati
+    }
+  });
+  response.code(201);
+  return response;
+};
+
+// const getPadiDatasHandler = (request, h) => {
+//   const { imageUri, label, score, desc, cPenanggulangan, cMengobati } = request.params;
+
+//   const padiData = padiDatas.filter((n) => n.imageUri === imageUri);
+
+//   if (padiData !== undefined) {
+//     return {
+//       status: 'success',
+//       message: 'Data ditemukan',
+//       padiDatas: {
+//         imageUri,
+//         label,
+//         score,
+//         desc,
+//         cPenanggulangan,
+//         cMengobati
+//       },
+//     };
+//   };
+
+//   const response = h.response({
+//     status: 'fail',
+//     message: 'Data tidak ditemukan',
+//   });
+//   response.code(404);
+//   return response;
+
+// };
+
+const getPostDetail = (request, h) => {
+  const { id, label, score, desc, cPenanggulangan, cMengobati } = request.params;
+
+  const padiData = padiDatas.filter((n) => n.id === id)[0];
+
+  if (padiData !== undefined) {
+    return {
+      status: 'success',
+      data: {
+        padiData,
+        label,
+        score,
+        desc,
+        cPenanggulangan,
+        cMengobati
+      },
+    };
+  };
+
+  const response = h.response({
+    status: 'fail',
+    message: 'Post tidak ditemukan',
+  });
+  response.code(404);
+  return response;
+};
+
+
+module.exports = { regisUserHandler, loginUserHandler, padiDatsaHandler, getPostDetail };
