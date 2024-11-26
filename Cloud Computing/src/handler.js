@@ -183,5 +183,31 @@ const getPostDetail = (request, h) => {
   return response;
 };
 
+const getHistory = (request, h) => {
+  const { id } = request.params;
 
-module.exports = { regisUserHandler, loginUserHandler, padiDatsaHandler, getPostDetail };
+  const history = padiDatas.filter((data) => data.userIds === id);
+
+  if (history.length > 0) {
+    const responseData = history.map((data) => ({
+      imageUri: data.imageUri,
+      label: data.label,
+      score: data.score
+    }));
+
+    return {
+      status: 'success',
+      data: responseData,
+    };
+  };
+
+  const response = h.response({
+    status: 'fail',
+    message: 'History tidak ditemukan',
+  });
+  response.code(404);
+  return response;
+};
+
+
+module.exports = { regisUserHandler, loginUserHandler, padiDatsaHandler, getPostDetail, getHistory };

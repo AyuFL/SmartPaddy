@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-const { regisUserHandler, loginUserHandler, padiDatsaHandler, getPostDetail } = require('./handler');
+const { regisUserHandler, loginUserHandler, padiDatsaHandler, getPostDetail, getHistory } = require('./handler');
 
 const routes = [
   {
@@ -21,6 +21,11 @@ const routes = [
     method: 'GET',
     path: '/post/{id}',
     handler: getPostDetail,
+  },
+  {
+    method: 'GET',
+    path: '/history/{id}',
+    handler: getHistory,
   }
 ];
 
