@@ -1,5 +1,6 @@
 /* eslint-disable linebreak-style */
 const { nanoid } = require('nanoid');
+const bcrypt = require('bcrypt');
 const users = require('./data');
 const padiDatas = require('./data');
 const { storeUserData } = require('../services/storeData');
@@ -9,13 +10,6 @@ const regisUserHandler = async (request, h) => {
   const { name, email, password } = request.payload;
 
   const token = nanoid(16);
-
-  const newUser = {
-    token,
-    name,
-    email,
-    password
-  };
 
   if (!name || !email || !password){
     const response = h.response({
@@ -36,6 +30,15 @@ const regisUserHandler = async (request, h) => {
     return response;
   }
 
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const newUser = {
+    token,
+    name,
+    email,
+    password: hashedPassword
+  };
+
   users.push(newUser);
 
   await storeUserData(newUser);
@@ -46,8 +49,7 @@ const regisUserHandler = async (request, h) => {
     user: {
       token,
       name,
-      email,
-      password
+      email
     }
   });
   response.code(201);
@@ -69,7 +71,7 @@ const loginUserHandler = async (request, h) => {
   const db = new Firestore();
   const userDoc = await db.collection('users').doc(email).get();
 
-  if (!userDoc.exists || userDoc.data().password !== password) {
+  if (!userDoc.exists) {
     const response = h.response({
       status: 'fail',
       message: 'Email atau password salah'
@@ -79,6 +81,16 @@ const loginUserHandler = async (request, h) => {
   }
 
   const user = userDoc.data();
+  const match = await bcrypt.compare(password, user.password);
+
+  if (!match) {
+    const response = h.response({
+      status: 'fail',
+      message: 'Email atau password salah'
+    });
+    response.code(401);
+    return response;
+  }
 
   const response = h.response({
     status: 'success',
