@@ -2,10 +2,10 @@
 const { nanoid } = require('nanoid');
 const users = require('./data');
 const padiDatas = require('./data');
-// const storeData = require('../services/storeData');
-// const { Firestore } = require('@google-cloud/firestore');
+const { storeUserData } = require('../services/storeData');
+const { Firestore } = require('@google-cloud/firestore');
 
-const regisUserHandler = (request, h) => {
+const regisUserHandler = async (request, h) => {
   const { name, email, password } = request.payload;
 
   const token = nanoid(16);
@@ -38,6 +38,8 @@ const regisUserHandler = (request, h) => {
 
   users.push(newUser);
 
+  await storeUserData(newUser);
+
   const response = h.response({
     status: 'success',
     message: 'User berhasil ditambahkan',
@@ -52,7 +54,7 @@ const regisUserHandler = (request, h) => {
   return response;
 };
 
-const loginUserHandler = (request, h) => {
+const loginUserHandler = async (request, h) => {
   const { email, password } = request.payload;
 
   if (!email || !password) {
@@ -64,9 +66,10 @@ const loginUserHandler = (request, h) => {
     return response;
   }
 
-  const user = users.find((user) => user.email === email);
+  const db = new Firestore();
+  const userDoc = await db.collection('users').doc(email).get();
 
-  if (!user || user.password !== password) {
+  if (!userDoc.exists || userDoc.data().password !== password) {
     const response = h.response({
       status: 'fail',
       message: 'Email atau password salah'
@@ -74,6 +77,8 @@ const loginUserHandler = (request, h) => {
     response.code(401);
     return response;
   }
+
+  const user = userDoc.data();
 
   const response = h.response({
     status: 'success',

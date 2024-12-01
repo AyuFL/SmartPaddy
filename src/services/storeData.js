@@ -2,11 +2,11 @@
 const { Firestore } = require('@google-cloud/firestore');
 
 // Logic collection users pada firestore
-async function storeUserData() {
+async function storeUserData(user) {
   const db = new Firestore();
 
   const userCollection = db.collection('users');
-  return userCollection.doc().set();
+  return userCollection.doc(user.email).set(user);
 }
 
 // Logic collection prediction data pada firestore
