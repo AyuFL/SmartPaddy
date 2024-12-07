@@ -35,14 +35,12 @@ The SmartPaddy API provides endpoints to manage user authentication, perform ima
    - Create a `.env` file in the root directory.
    - Add the necessary environment variables such as:
      ```env
-     FLASK_APP=app.py
-     FLASK_ENV=development
-     SECRET_KEY=your_secret_key
+     MODEL_URL=your_secret_key
      ```
 
 5. **Run the Flask Application**:
    ```bash
-   flask run
+   python run.py
    ```
 
 6. **Access the API**:
