@@ -154,11 +154,42 @@ Processes an image of paddy plants to make predictions.
 ---
 
 ### 4. **Get Post Details**
-**Route:** `/post/<string:post_id>`  
+**Route:** `/post/<string:predict_id>`  
 **Method:** `GET`
 
 **Description:**  
-Retrieves details of a specific post by its `post_id`. The `get_post_detail` function processes the request.
+Retrieves details of a specific post by its `predict_id`. The `get_post_detail` function processes the request.
+
+#### Expected Input:
+- **predict_id**: The ID of the data.
+
+#### Expected Outputs:
+
+1. **Case 1: Successful Get Details**  
+**HTTP Status Code:** 200
+```json
+{
+    "data": {
+        "result": {
+            "c_menangani": "String",
+            "gejala": "String",
+            "penjelasan": "String",
+            "predicted_class": "String",
+            "predicted_prob": Float
+        }
+    },
+    "status": "success"
+}
+```
+
+2. **Case 2: Data not found**
+**HTTP Status Code:** 404
+```json
+{
+    "message": "Data tidak ditemukan",
+    "status": "fail"
+}
+```
 
 ---
 
@@ -179,9 +210,18 @@ Retrieves the historical data associated with a user.
 ```json
 {
     "data": [
-        {},
-        {}
-    ]
+        {
+            "predict_id": "String",
+            "result": {
+                "c_menangani": "String",
+                "gejala": "String",
+                "penjelasan": "String",
+                "predicted_class": "String",
+                "predicted_prob": Float
+            }
+        }
+    ],
+    "status": "success"
 }
 ```
 
