@@ -61,6 +61,45 @@ The SmartPaddy API provides endpoints to manage user authentication, perform ima
 **Description:**  
 Registers a new user. The `regis_user_handler` function processes the request.
 
+#### Expected Input:
+- **Name**: A name of User.
+- **Email**: A email of User.
+- **Password**: A password for User
+
+#### Expected Outputs:
+
+1. **Case 1: Successful Register**  
+**HTTP Status Code:** 200
+```json
+{
+    "message": "String",
+    "status": "success",
+    "user": {
+        "email": "String",
+        "name": "String",
+        "token": "String"
+    }
+}
+```
+
+2. **Case 2: Email already registered**  
+**HTTP Status Code:** 400
+```json
+{
+    "message": "Email sudah terdaftar",
+    "status": "fail"
+}
+```
+
+3. **Case 3: No data input**  
+**HTTP Status Code:** 400
+```json
+{
+    "message": "Mohon isi seluruh data",
+    "status": "fail"
+}
+```
+
 ---
 
 ### 2. **User Login**
@@ -69,6 +108,40 @@ Registers a new user. The `regis_user_handler` function processes the request.
 
 **Description:**  
 Authenticates an existing user. The `login_user_handler` function processes the request.
+
+#### Expected Input:
+- **Email**: A email for authentication.
+- **Password**: A password for authentication.
+
+#### Expected Outputs:
+
+1. **Case 1: Successful Login**  
+**HTTP Status Code:** 200
+```json
+{
+    "message": "String",
+    "status": "success",
+    "token": "String"
+}
+```
+
+2. **Case 2: Wrong email or wrong password**  
+**HTTP Status Code:** 401
+```json
+{
+    "message": "Email atau password salah",
+    "status": "fail"
+}
+```
+
+3. **Case 3: No data input or No email or No password**  
+**HTTP Status Code:** 400
+```json
+{
+    "message": "Mohon isi email dan password",
+    "status": "fail"
+}
+```
 
 ---
 
