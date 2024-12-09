@@ -18,7 +18,4 @@ def create_app():
     # Register routes
     register_routes(app)
 
-    if __name__ == '__main__':
-        app.run(port=5000, host='localhost')
-
     return app

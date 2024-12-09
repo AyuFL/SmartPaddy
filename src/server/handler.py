@@ -67,6 +67,7 @@ def padi_data_predict():
     user_id = request.form.get('userIds')
     predict_id = generate(size=16)
 
+    # Error Handling 
     if not image_file:
         return jsonify({"status": "fail", "message": "Image file is required"}), 400
     if not user_id:
@@ -91,9 +92,6 @@ def padi_data_predict():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
-def append_prediction_data(predict_id, padi_data):
-    padi_datas.append(padi_data)
-
 def get_post_detail(predict_id):
     padi_data_item = get_prediction_data(predict_id)
 
@@ -106,7 +104,6 @@ def get_post_detail(predict_id):
         }), 200
     else:
         return jsonify({'status': 'fail', 'message': 'Data tidak ditemukan'}), 404
-
 
 def get_history(user_id):
     db = firestore.Client()
