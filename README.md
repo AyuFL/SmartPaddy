@@ -61,6 +61,45 @@ The SmartPaddy API provides endpoints to manage user authentication, perform ima
 **Description:**  
 Registers a new user. The `regis_user_handler` function processes the request.
 
+#### Expected Input:
+- **Name**: A name of User.
+- **Email**: A email of User.
+- **Password**: A password for User
+
+#### Expected Outputs:
+
+1. **Case 1: Successful Register**  
+**HTTP Status Code:** 200
+```json
+{
+    "message": "String",
+    "status": "success",
+    "user": {
+        "email": "String",
+        "name": "String",
+        "token": "String"
+    }
+}
+```
+
+2. **Case 2: Email already registered**  
+**HTTP Status Code:** 400
+```json
+{
+    "message": "Email sudah terdaftar",
+    "status": "fail"
+}
+```
+
+3. **Case 3: No data input**  
+**HTTP Status Code:** 400
+```json
+{
+    "message": "Mohon isi seluruh data",
+    "status": "fail"
+}
+```
+
 ---
 
 ### 2. **User Login**
@@ -69,6 +108,40 @@ Registers a new user. The `regis_user_handler` function processes the request.
 
 **Description:**  
 Authenticates an existing user. The `login_user_handler` function processes the request.
+
+#### Expected Input:
+- **Email**: A email for authentication.
+- **Password**: A password for authentication.
+
+#### Expected Outputs:
+
+1. **Case 1: Successful Login**  
+**HTTP Status Code:** 200
+```json
+{
+    "message": "String",
+    "status": "success",
+    "token": "String"
+}
+```
+
+2. **Case 2: Wrong email or wrong password**  
+**HTTP Status Code:** 401
+```json
+{
+    "message": "Email atau password salah",
+    "status": "fail"
+}
+```
+
+3. **Case 3: No data input or No email or No password**  
+**HTTP Status Code:** 400
+```json
+{
+    "message": "Mohon isi email dan password",
+    "status": "fail"
+}
+```
 
 ---
 
@@ -80,8 +153,8 @@ Authenticates an existing user. The `login_user_handler` function processes the 
 Processes an image of paddy plants to make predictions.
 
 #### Expected Input:
-- **Image**: A `.png` or `.jpg` file.
-- **UserIds**: A string used for authentication.
+- **imageUri**: A `.png` or `.jpg` file.
+- **userIds**: A string used for authentication.
 
 #### Expected Outputs:
 
@@ -154,11 +227,42 @@ Processes an image of paddy plants to make predictions.
 ---
 
 ### 4. **Get Post Details**
-**Route:** `/post/<string:post_id>`  
+**Route:** `/post/<string:predict_id>`  
 **Method:** `GET`
 
 **Description:**  
-Retrieves details of a specific post by its `post_id`. The `get_post_detail` function processes the request.
+Retrieves details of a specific post by its `predict_id`. The `get_post_detail` function processes the request.
+
+#### Expected Input:
+- **predict_id**: The ID of the data.
+
+#### Expected Outputs:
+
+1. **Case 1: Successful Get Details**  
+**HTTP Status Code:** 200
+```json
+{
+    "data": {
+        "result": {
+            "c_menangani": "String",
+            "gejala": "String",
+            "penjelasan": "String",
+            "predicted_class": "String",
+            "predicted_prob": Float
+        }
+    },
+    "status": "success"
+}
+```
+
+2. **Case 2: Data not found**
+**HTTP Status Code:** 404
+```json
+{
+    "message": "Data tidak ditemukan",
+    "status": "fail"
+}
+```
 
 ---
 
@@ -179,9 +283,18 @@ Retrieves the historical data associated with a user.
 ```json
 {
     "data": [
-        {},
-        {}
-    ]
+        {
+            "predict_id": "String",
+            "result": {
+                "c_menangani": "String",
+                "gejala": "String",
+                "penjelasan": "String",
+                "predicted_class": "String",
+                "predicted_prob": Float
+            }
+        }
+    ],
+    "status": "success"
 }
 ```
 
