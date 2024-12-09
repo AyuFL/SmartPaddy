@@ -50,4 +50,11 @@ dependencies {
 
   // viewPager2
   implementation(libs.androidx.viewpager2)
+
+  // Retrofit
+  implementation(libs.retrofit)
+  implementation(libs.converter.gson)
+
+  // Logging Interceptor
+  implementation(libs.logging.interceptor)
 }
