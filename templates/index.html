@@ -74,7 +74,6 @@
         reader.readAsDataURL(file);
     });
 
-    // Handle form submission with AJAX
     document.getElementById('predictionForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -98,7 +97,6 @@
                 // Display the image result
                 if (data.data.result && data.data.result.imageUrl) {
                     const imageElement = document.createElement('img');
-                    imageElement.src = data.data.result.imageUrl; 
                     resultDiv.appendChild(imageElement);
                 }
             } else {

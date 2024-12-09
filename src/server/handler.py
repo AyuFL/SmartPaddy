@@ -78,10 +78,6 @@ def padi_data_predict():
         result = predict_image(image_stream, model)
         created_at = datetime.utcnow()
 
-        # Handling untuk gambar tidak jelas
-        if result == False:
-            return jsonify({"status": "fail", "message": "Image is not recognizable. Please use a better Image!"}), 415
-
         padi_data = {
             "user_id": user_id,
             "created_at": created_at,
