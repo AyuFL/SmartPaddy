@@ -155,6 +155,7 @@ Processes an image of paddy plants to make predictions.
 #### Expected Input:
 - **imageUri**: A `.png` or `.jpg` file.
 - **userIds**: A string used for authentication.
+- **imagePath**: A string used for saving the image path.
 
 #### Expected Outputs:
 
@@ -163,6 +164,7 @@ Processes an image of paddy plants to make predictions.
 ```json
 {
     "data": {
+        "image_path": "String",
         "predict_id": "String",
         "result": {
             "c_menangani": "String",
@@ -182,6 +184,7 @@ Processes an image of paddy plants to make predictions.
 ```json
 {
     "data": {
+        "image_path": "String",
         "predict_id": "String",
         "result": {
             "c_menangani": "String",
@@ -284,6 +287,7 @@ Retrieves the historical data associated with a user.
 {
     "data": [
         {
+            "image_path": "String",
             "predict_id": "String",
             "result": {
                 "c_menangani": "String",
