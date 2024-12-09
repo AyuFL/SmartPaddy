@@ -153,8 +153,8 @@ Authenticates an existing user. The `login_user_handler` function processes the 
 Processes an image of paddy plants to make predictions.
 
 #### Expected Input:
-- **Image**: A `.png` or `.jpg` file.
-- **UserIds**: A string used for authentication.
+- **imageUri**: A `.png` or `.jpg` file.
+- **userIds**: A string used for authentication.
 
 #### Expected Outputs:
 
