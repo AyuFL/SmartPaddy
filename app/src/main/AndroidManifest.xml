@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
   <application
+      android:name=".MainApplication"
       android:allowBackup="true"
       android:dataExtractionRules="@xml/data_extraction_rules"
       android:fullBackupContent="@xml/backup_rules"
@@ -13,7 +14,7 @@
       android:theme="@style/Theme.SmartPaddy"
       tools:targetApi="31">
     <activity
-        android:name=".MainActivity"
+        android:name=".presentation.loginPage.LoginActivity"
         android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -21,6 +22,19 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+
+    <activity
+        android:name=".presentation.registerPage.RegisterActivity"
+        android:exported="true"
+        android:screenOrientation="nosensor"
+        tools:ignore="DiscouragedApi" />
+
+    <activity
+        android:name=".presentation.mainPage.MainActivity"
+        android:exported="true"
+        android:screenOrientation="nosensor"
+        tools:ignore="DiscouragedApi" />
+
   </application>
 
 </manifest>
