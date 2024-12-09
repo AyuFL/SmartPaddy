@@ -24,6 +24,12 @@
     </activity>
 
     <activity
+        android:name=".ui.history.HistoryActivity"
+        android:exported="true"
+        android:screenOrientation="nosensor"
+        tools:ignore="DiscouragedApi" />
+
+    <activity
         android:name=".presentation.registerPage.RegisterActivity"
         android:exported="true"
         android:screenOrientation="nosensor"

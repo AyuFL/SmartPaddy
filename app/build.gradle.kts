@@ -1,8 +1,6 @@
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.android)
-  id("kotlin-kapt")
-  id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -25,15 +23,17 @@ android {
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     }
   }
+
+  buildFeatures {
+    viewBinding = true
+  }
+
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
   }
   kotlinOptions {
     jvmTarget = "1.8"
-  }
-  buildFeatures {
-    viewBinding = true
   }
 }
 
@@ -44,18 +44,17 @@ dependencies {
   implementation(libs.material)
   implementation(libs.androidx.activity)
   implementation(libs.androidx.constraintlayout)
-  implementation(libs.firebase.auth.ktx)
-  implementation(libs.firebase.firestore.ktx)
-  implementation(libs.androidx.navigation.runtime.ktx)
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso.core)
-  implementation(libs.hilt.android)
-  kapt(libs.hilt.android.compiler)
-  implementation(libs.androidx.lifecycle.viewmodel.ktx)
-  implementation(libs.timber)
-}
 
-kapt {
-  correctErrorTypes = true
+  // viewPager2
+  implementation(libs.androidx.viewpager2)
+
+  // Retrofit
+  implementation(libs.retrofit)
+  implementation(libs.converter.gson)
+
+  // Logging Interceptor
+  implementation(libs.logging.interceptor)
 }
