@@ -5,28 +5,37 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".presentation.profilePage.ProfileFragment"
     >
 
   <androidx.appcompat.widget.Toolbar
       android:id="@+id/toolbar"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="?attr/colorPrimary"
-      android:minHeight="?attr/actionBarSize"
-      android:theme="?attr/actionBarTheme"
+      android:layout_height="55dp"
+      android:background="@color/green"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent">
+      app:layout_constraintTop_toTopOf="parent"
+      >
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/ic_back"
+        tools:ignore="ContentDescription"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/bold"
         android:text="Profile"
-        android:textSize="24sp"
-        android:textStyle="bold"
         android:textColor="@color/white"
-        android:layout_gravity="center" />
+        android:textSize="@dimen/font_20"
+        />
 
   </androidx.appcompat.widget.Toolbar>
 
@@ -35,9 +44,10 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="100dp"
+      android:fontFamily="@font/bold"
       android:text="Bella S"
-      android:textSize="24sp"
-      android:textStyle="bold"
+      android:textColor="@color/dark_green"
+      android:textSize="@dimen/font_24"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -48,22 +58,13 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="20dp"
+      android:fontFamily="@font/semibold"
       android:text="bella@gmail.com"
-      android:textSize="20sp"
+      android:textColor="@color/dark_green"
+      android:textSize="@dimen/font_20"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/user_name_tv"
-      />
-
-  <Button
-      android:id="@+id/change_pass_btn"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="50dp"
-      android:text="Change password"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/user_email_tv"
       />
 
   <Button
@@ -72,16 +73,17 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="8dp"
       android:text="Log out"
+      android:background="@drawable/button_light_green"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/change_pass_btn"
+      app:layout_constraintTop_toBottomOf="@+id/user_email_tv"
       />
 
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:orientation="horizontal"
       android:gravity="center"
+      android:orientation="horizontal"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -91,16 +93,18 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dark Mode"
-        android:textSize="24sp"
-        android:textStyle="bold"
         android:layout_marginEnd="100dp"
+        android:text="Dark Mode"
+        android:textSize="@dimen/font_20"
+        android:fontFamily="@font/bold"
+        android:textColor="@color/dark_green"
         />
-
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        app:thumbTint="@color/switch_thumb_color"
+        app:trackTint="@color/switch_track_color" />
+    />
   </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

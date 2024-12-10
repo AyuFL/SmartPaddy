@@ -5,16 +5,15 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".presentation.homePage.HomeFragment"
     >
 
   <androidx.appcompat.widget.Toolbar
       android:id="@+id/toolbar"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="?attr/colorPrimary"
-      android:minHeight="?attr/actionBarSize"
-      android:theme="?attr/actionBarTheme"
+      android:layout_height="@dimen/dimen_100"
+      android:background="@color/green"
       android:padding="24dp"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -26,11 +25,12 @@
         android:orientation="vertical">
 
       <TextView
+          android:id="@+id/tv_username"
           android:layout_width="wrap_content"
           android:layout_height="match_parent"
-          android:text="Hello Bella,"
           android:textColor="@color/white"
           android:textSize="18sp"
+          android:fontFamily="@font/bold"
           android:textStyle="bold" />
 
       <TextView
@@ -38,10 +38,12 @@
           android:layout_height="match_parent"
           android:text="Let's Learn More About Plants"
           android:textColor="@color/white"
-          android:textSize="18sp"/>
+          android:fontFamily="@font/regular"
+          android:textSize="@dimen/font_12"/>
     </LinearLayout>
 
     <ImageButton
+        android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/baseline_logout_24"
@@ -56,8 +58,10 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/you_have_been_detected"
-      android:textSize="24sp"
+      android:textSize="@dimen/font_20"
       android:layout_marginTop="30dp"
+      android:textColor="@color/brown"
+      android:fontFamily="@font/bold"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -79,8 +83,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:textSize="52sp"
-        android:textStyle="bold"
+        android:textSize="@dimen/font_45"
+        android:textColor="@color/dark_green"
+        android:fontFamily="@font/extrabold"
         />
 
     <ImageView
@@ -95,9 +100,11 @@
       android:id="@+id/home_subtitle_tv"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Here's your detected diseases recap!"
-      android:textSize="20sp"
+      android:text="@string/here_s_your_detected_diseases_recap"
+      android:textSize="@dimen/font_18"
       android:layout_marginTop="30dp"
+      android:textColor="@color/brown"
+      android:fontFamily="@font/semibold"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/paddy_count_ll"
@@ -109,7 +116,9 @@
       android:layout_height="wrap_content"
       android:focusable="true"
       android:text="@string/history"
-      android:textSize="22sp"
+      android:fontFamily="@font/medium"
+      android:textSize="@dimen/font_22"
+      android:textColor="@color/brown"
       app:drawableEndCompat="@drawable/baseline_keyboard_arrow_right_24"
       android:layout_marginTop="30dp"
       android:paddingHorizontal="24dp"

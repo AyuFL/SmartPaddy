@@ -28,4 +28,6 @@
   <string name="paddy_iv">paddy_iv</string>
   <string name="registration_success">Registration success</string>
   <string name="registration_failed">Registration failed</string>
+  <string name="greetings">Hi, %1$s!</string>
+  <string name="here_s_your_detected_diseases_recap">Here\'s your detected diseases recap!</string>
 </resources>

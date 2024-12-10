@@ -11,21 +11,33 @@
   <androidx.appcompat.widget.Toolbar
       android:id="@+id/toolbar"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="?attr/colorPrimary"
-      android:minHeight="?attr/actionBarSize"
-      android:theme="?attr/actionBarTheme">
+      android:layout_height="55dp"
+      android:background="@color/green"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      >
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/ic_back"
+        tools:ignore="ContentDescription"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Scan"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:fontFamily="@font/bold"
+        android:text="@string/camera"
         android:textColor="@color/white"
-        android:layout_gravity="center" />
+        android:textSize="@dimen/font_20"
+        />
 
   </androidx.appcompat.widget.Toolbar>
+
 
   <com.google.android.material.card.MaterialCardView
       android:id="@+id/imageCard"
