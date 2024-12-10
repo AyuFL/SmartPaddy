@@ -9,6 +9,7 @@ from src.services.inference_service import predict_image
 from google.cloud import firestore
 from werkzeug.utils import secure_filename
 from datetime import datetime
+from google.cloud import storage
 
 def regis_user_handler():
     data = request.get_json()
@@ -60,8 +61,31 @@ def login_user_handler():
         'message': 'Selamat datang di SmartPaddy'
     }), 200
 
+def upload_img_to_bucket(bucket_name, image_file, image_filename, predict_id):
+    try:
+        client = storage.Client()
+        bucket = client.bucket(bucket_name)
+    
+        file_extension = image_filename.split('.')[-1]
+        unique_filename = f"{predict_id}.{file_extension}"
+    
+        blob = bucket.blob(unique_filename)
+        blob.upload_from_file(image_file, content_type=image_file.content_type)
+    
+        blob.make_public()
+    
+        return blob.public_url
+        
+    except Exception as e:
+        print(f"Error during upload to bucket: {e}")
+        raise 
+
 def padi_data_predict():
     model = current_app.config['MODEL']
+    bucket_name = os.getenv("BUCKET_NAME")
+
+    if not bucket_name:
+        return jsonify({"status": "error", "message": "Bucket name is not configured"}), 500
 
     image_file = request.files.get('imageUri')
     user_id = request.form.get('userIds')
@@ -74,14 +98,27 @@ def padi_data_predict():
         return jsonify({"status": "fail", "message": "User ID is required"}), 400
 
     try:
+        #Handling untuk prediksi data
         image_stream = BytesIO(image_file.read())
+        image_stream.seek(0)
         result = predict_image(image_stream, model)
+
         created_at = datetime.utcnow()
+
+        # Handling untuk gambar tidak jelas
+        if result == False:
+            return jsonify({"status": "fail", "message": "Image is not recognizable. Please use a better Image!"}), 415
+
+        # Handling untuk upload gambar ke cloud storage
+        image_file.stream.seek(0)
+        image_filename= image_file.filename
+        image_url = upload_img_to_bucket(bucket_name, image_file, image_filename, predict_id)
 
         padi_data = {
             "user_id": user_id,
             "created_at": created_at,
             "predict_id": predict_id,
+            "image_url": image_url,
             "result": result
         }
 
@@ -117,6 +154,7 @@ def get_history(user_id):
     if history:
         response_history = [{
             "predict_id": data['predict_id'],
+            "image_url": data['image_url'],
             "result": data['result']
         } for data in history]
 
