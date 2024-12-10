@@ -164,7 +164,8 @@ Processes an image of paddy plants to make predictions.
 ```json
 {
     "data": {
-        "image_path": "String",
+        "created_at": DATE,
+        "image_url": "String",
         "predict_id": "String",
         "result": {
             "c_menangani": "String",
@@ -184,7 +185,8 @@ Processes an image of paddy plants to make predictions.
 ```json
 {
     "data": {
-        "image_path": "String",
+        "created_at": DATE,
+        "image_url": "String",
         "predict_id": "String",
         "result": {
             "c_menangani": "String",
@@ -287,7 +289,8 @@ Retrieves the historical data associated with a user.
 {
     "data": [
         {
-            "image_path": "String",
+            "created_at": DATE,
+            "image_url": "String",
             "predict_id": "String",
             "result": {
                 "c_menangani": "String",
