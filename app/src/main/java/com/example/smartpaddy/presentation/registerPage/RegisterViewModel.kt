@@ -1,48 +1,57 @@
 package com.example.smartpaddy.presentation.registerPage
 
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.smartpaddy.domain.model.User
-import com.example.smartpaddy.domain.usecase.auth.AuthUseCase
-import com.example.smartpaddy.domain.usecase.user.UserUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.example.smartpaddy.data.response.RegisterResponse
+import com.example.smartpaddy.data.response.UserResponse
+import com.example.smartpaddy.data.retrofit.ApiConfig
+import com.example.smartpaddy.data.retrofit.RegisterRequest
 import kotlinx.coroutines.launch
-import java.security.MessageDigest
+import retrofit2.HttpException
+import java.io.IOException
 
-class RegisterViewModel (
-  private val userUseCase: UserUseCase,
-  private val authUseCase: AuthUseCase
-) : ViewModel() {
+class RegisterViewModel : ViewModel() {
 
-  fun registerUser(
-    email: String,
-    name: String,
-    password: String,
-    onComplete: (Boolean) -> Unit
-  ) {
+  private val _registerResponse = MutableLiveData<RegisterResponse>()
+  val registerResponse: LiveData<RegisterResponse> = _registerResponse
+
+  fun register(name: String, email: String, password: String) {
     viewModelScope.launch {
-      authUseCase.registerUser(email, password)
       try {
-        val uid = authUseCase.getCurrentUserID()
-        val user = User(
-          id = uid,
-          email = email,
-          name = name,
-          password = hashPassword(password)
+        val apiService = ApiConfig.getApiService()
+
+        // Create a RegisterRequest object with the input values
+        val registerRequest = RegisterRequest(name, email, password)
+
+        // Make the API call using the @Body parameter
+        val response = apiService.register(registerRequest)
+
+        // Update LiveData with the response
+        _registerResponse.value = response
+      } catch (e: HttpException) {
+        _registerResponse.value = RegisterResponse(
+          message = e.response()?.errorBody()?.string()
+            ?: "Registration failed",
+          status = "fail",
+          user = UserResponse("", "", "")
         )
-        userUseCase.storeUser(uid, user)
-        onComplete(true)
-      } catch (
-        e: Exception
-      ) {
-        onComplete(false)
+      } catch (e: IOException) {
+        _registerResponse.value = RegisterResponse(
+          message = "Network error: Check internet connection",
+          status = "fail",
+          user = UserResponse("", "", "")
+        )
+      } catch (e: Exception) {
+        _registerResponse.value = RegisterResponse(
+          message = "Unexpected error: ${e.message}",
+          status = "fail",
+          user = UserResponse("", "", "")
+        )
+        Log.d("regist", "${e.message}")
       }
     }
-  }
-
-  private fun hashPassword(password: String): String {
-    return MessageDigest.getInstance("SHA-256")
-      .digest(password.toByteArray())
-      .joinToString("") { "%02x".format(it) }
   }
 }

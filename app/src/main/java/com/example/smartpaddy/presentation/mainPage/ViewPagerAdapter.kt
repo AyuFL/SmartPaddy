@@ -1,4 +1,4 @@
-package com.example.smartpaddy.ui.main
+package com.example.smartpaddy.presentation.mainPage
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

@@ -1,21 +1,21 @@
-package com.example.smartpaddy.ui.home
+package com.example.smartpaddy.presentation.cameraPage
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.smartpaddy.databinding.FragmentHomeBinding
+import com.example.smartpaddy.databinding.FragmentCameraBinding
 
-class HomeFragment : Fragment() {
+class CameraFragment : Fragment() {
 
-  private lateinit var binding: FragmentHomeBinding
+  private lateinit var binding: FragmentCameraBinding
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    binding = FragmentHomeBinding.inflate(layoutInflater)
+    binding = FragmentCameraBinding.inflate(layoutInflater)
     return binding.root
   }
 }

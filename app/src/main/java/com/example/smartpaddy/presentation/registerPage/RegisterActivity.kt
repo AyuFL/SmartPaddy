@@ -10,14 +10,13 @@ import com.example.smartpaddy.R
 import com.example.smartpaddy.databinding.ActivityRegisterBinding
 import com.example.smartpaddy.presentation.loginPage.LoginActivity
 import com.example.smartpaddy.utils.Constants
-import dagger.hilt.android.AndroidEntryPoint
 
 class RegisterActivity : AppCompatActivity() {
 
   private lateinit var binding: ActivityRegisterBinding
-  private val viewModel: RegisterViewModel by viewModels()
   private val passwordPatterns = Constants.passwordPatterns
   private var registerClicked = false
+  private val viewModel: RegisterViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -27,47 +26,50 @@ class RegisterActivity : AppCompatActivity() {
     binding.btnRegister.setOnClickListener {
       if (!registerClicked) {
         registerClicked = true
-        storeAndValidation()
+        validateAndRegister()
       }
     }
 
     binding.tvLogin.setOnClickListener {
       goToLoginPage()
     }
+
+    observeViewModel()
   }
 
-  private fun storeAndValidation() {
-    val email = binding.etEmail.text.toString()
-    val password = binding.etPassword.text.toString()
-    val name = binding.etName.text.toString()
-
-    if (email.isEmpty() || password.isEmpty()) {
-      showValidationError(getString(R.string.email_pass_empty))
-      registerClicked = false
-      return
-    }
-
-    if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-      showValidationError(getString(R.string.email_not_valid))
-      registerClicked = false
-      return
-    }
-
-    if (!passwordPatterns.matcher(password).matches()) {
-      showValidationError(getString(R.string.password_not_valid))
-      registerClicked = false
-      return
-    }
-
-    viewModel.registerUser(email, name, password) { success ->
-      if (success) {
-        Toast.makeText(this, R.string.register_success, Toast.LENGTH_SHORT).show()
+  private fun observeViewModel() {
+    viewModel.registerResponse.observe(this) { response ->
+      if (response.status == "success") {
+        Toast.makeText(this, getString(R.string.registration_success), Toast.LENGTH_SHORT).show()
         goToLoginPage()
       } else {
-        Toast.makeText(this, R.string.register_failed, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, response.message ?: getString(R.string.registration_failed), Toast.LENGTH_SHORT).show()
         registerClicked = false
       }
     }
+  }
+
+  private fun validateAndRegister() {
+    val name = binding.etName.text.toString().trim()
+    val email = binding.etEmail.text.toString().trim()
+    val password = binding.etPassword.text.toString().trim()
+
+    when {
+      name.isEmpty() || email.isEmpty() || password.isEmpty() -> {
+        showValidationError(getString(R.string.email_pass_empty))
+      }
+      !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+        showValidationError(getString(R.string.email_not_valid))
+      }
+      !passwordPatterns.matcher(password).matches() -> {
+        showValidationError(getString(R.string.password_not_valid))
+      }
+      else -> {
+        viewModel.register(name, email, password)
+        return
+      }
+    }
+    registerClicked = false
   }
 
   private fun showValidationError(message: String) {

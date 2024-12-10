@@ -1,21 +1,21 @@
-package com.example.smartpaddy.ui.profile
+package com.example.smartpaddy.presentation.homePage
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.smartpaddy.databinding.FragmentProfileBinding
+import com.example.smartpaddy.databinding.FragmentHomeBinding
 
-class ProfileFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-  private lateinit var binding: FragmentProfileBinding
+  private lateinit var binding: FragmentHomeBinding
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    binding = FragmentProfileBinding.inflate(layoutInflater)
+    binding = FragmentHomeBinding.inflate(layoutInflater)
     return binding.root
   }
 }

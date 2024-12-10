@@ -1,51 +1,62 @@
 package com.example.smartpaddy.presentation.mainPage
 
 import android.os.Bundle
-import androidx.activity.viewModels
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.viewpager2.widget.ViewPager2
 import com.example.smartpaddy.R
-import com.example.smartpaddy.data.network.ConnectivityObserver
-import com.example.smartpaddy.data.network.NetworkUtils
 import com.example.smartpaddy.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
-import javax.inject.Inject
+import com.example.smartpaddy.presentation.cameraPage.CameraFragment
+import com.example.smartpaddy.presentation.homePage.HomeFragment
+import com.example.smartpaddy.presentation.profilePage.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
 
   private lateinit var binding: ActivityMainBinding
 
-  private val mainActivityViewModel: MainActivityViewModel by viewModels()
-
-  private var navController: NavController? = null
-
-  private lateinit var connectivityObserver: ConnectivityObserver
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = ActivityMainBinding.inflate(layoutInflater)
-    setContentView(binding.root)
+    enableEdgeToEdge()
 
-    checkConnectivityStatus()
+    binding = ActivityMainBinding.inflate(layoutInflater)
+
+    setContentView(binding.root)
+    ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
+      val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+      v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+      insets
+    }
+
+    setupView()
   }
 
-  private fun checkConnectivityStatus() {
-    lifecycleScope.launch {
-      connectivityObserver.observe().collectLatest {
-        if (it.toString() == getString(R.string.available) &&
-          NetworkUtils.isConnectedToNetwork.value != true
-        ) {
-          NetworkUtils.setConnectionToTrue()
-        } else if (it.toString() != getString(R.string.available) &&
-          NetworkUtils.isConnectedToNetwork.value != false
-        ) {
-          NetworkUtils.setConnectionToFalse()
-        }
+  private fun setupView() {
+    val fragments = listOf(
+      HomeFragment(),
+      CameraFragment(),
+      ProfileFragment()
+    )
+
+    val adapter = ViewPagerAdapter(this, fragments)
+    val viewPager = binding.viewPager
+
+    viewPager.adapter = adapter
+
+    binding.bottomNav.setOnItemSelectedListener { menuItem ->
+      when (menuItem.itemId) {
+        R.id.home -> viewPager.currentItem = 0
+        R.id.camera -> viewPager.currentItem = 1
+        R.id.profile -> viewPager.currentItem = 2
       }
+      true
     }
+
+    viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+      override fun onPageSelected(position: Int) {
+        binding.bottomNav.menu.getItem(position).isChecked = true
+      }
+    })
   }
 }
-
