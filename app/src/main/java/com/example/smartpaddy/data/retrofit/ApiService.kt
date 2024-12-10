@@ -23,8 +23,8 @@ interface ApiService {
     @Path("predict_id") id: String
   ): PostResponse
 
-  @GET("history/{id}")
+  @GET("history/{user_id}")
   suspend fun getHistory(
-    @Path("user_id") id: String
+    @Path("user_id") userId: String
   ): HistoryResponse
 }

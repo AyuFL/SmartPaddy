@@ -47,6 +47,10 @@ dependencies {
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso.core)
+  implementation(libs.androidx.fragment.ktx)
+
+  // viewModel
+  implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
   // viewPager2
   implementation(libs.androidx.viewpager2)
