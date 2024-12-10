@@ -1,4 +1,4 @@
-package com.example.smartpaddy.presentation.historyPage
+package com.example.smartpaddy.presentation.history
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

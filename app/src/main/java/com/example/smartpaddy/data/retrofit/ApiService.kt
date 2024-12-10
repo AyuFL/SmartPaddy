@@ -1,5 +1,7 @@
 package com.example.smartpaddy.data.retrofit
 
+import com.example.smartpaddy.data.request.LoginRequest
+import com.example.smartpaddy.data.request.RegisterRequest
 import com.example.smartpaddy.data.response.HistoryResponse
 import com.example.smartpaddy.data.response.LoginResponse
 import com.example.smartpaddy.data.response.PostResponse
@@ -7,8 +9,6 @@ import com.example.smartpaddy.data.response.RegisterResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST

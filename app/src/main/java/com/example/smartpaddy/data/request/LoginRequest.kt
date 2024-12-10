@@ -1,4 +1,4 @@
-package com.example.smartpaddy.data.retrofit
+package com.example.smartpaddy.data.request
 
 data class LoginRequest (
   val email: String,

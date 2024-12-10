@@ -1,4 +1,4 @@
-package com.example.smartpaddy.presentation.loginPage
+package com.example.smartpaddy.presentation.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.smartpaddy.data.response.LoginResponse
 import com.example.smartpaddy.data.retrofit.ApiConfig
-import com.example.smartpaddy.data.retrofit.LoginRequest
+import com.example.smartpaddy.data.request.LoginRequest
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException

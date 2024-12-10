@@ -1,4 +1,4 @@
-package com.example.smartpaddy.presentation.mainPage
+package com.example.smartpaddy.presentation.main
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -8,9 +8,9 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.smartpaddy.R
 import com.example.smartpaddy.databinding.ActivityMainBinding
-import com.example.smartpaddy.presentation.cameraPage.CameraFragment
-import com.example.smartpaddy.presentation.homePage.HomeFragment
-import com.example.smartpaddy.presentation.profilePage.ProfileFragment
+import com.example.smartpaddy.presentation.camera.CameraFragment
+import com.example.smartpaddy.presentation.home.HomeFragment
+import com.example.smartpaddy.presentation.profile.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
 

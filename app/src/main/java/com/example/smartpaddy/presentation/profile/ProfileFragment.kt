@@ -1,4 +1,4 @@
-package com.example.smartpaddy.presentation.profilePage
+package com.example.smartpaddy.presentation.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater

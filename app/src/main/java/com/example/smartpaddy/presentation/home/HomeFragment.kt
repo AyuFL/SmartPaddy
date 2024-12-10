@@ -1,4 +1,4 @@
-package com.example.smartpaddy.presentation.homePage
+package com.example.smartpaddy.presentation.home
 
 import android.content.Intent
 import android.os.Bundle

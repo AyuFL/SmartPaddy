@@ -1,4 +1,4 @@
-package com.example.smartpaddy.presentation.loginPage
+package com.example.smartpaddy.presentation.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,8 +9,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.smartpaddy.R
 import com.example.smartpaddy.databinding.ActivityLoginBinding
-import com.example.smartpaddy.presentation.mainPage.MainActivity
-import com.example.smartpaddy.presentation.registerPage.RegisterActivity
+import com.example.smartpaddy.presentation.main.MainActivity
+import com.example.smartpaddy.presentation.register.RegisterActivity
 import com.example.smartpaddy.utils.Constants
 
 class LoginActivity : AppCompatActivity() {

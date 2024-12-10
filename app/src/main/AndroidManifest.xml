@@ -16,7 +16,7 @@
       android:theme="@style/Theme.SmartPaddy"
       tools:targetApi="31">
     <activity
-        android:name=".presentation.loginPage.LoginActivity"
+        android:name=".presentation.login.LoginActivity"
         android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -26,19 +26,19 @@
     </activity>
 
     <activity
-        android:name=".presentation.historyPage.HistoryActivity"
+        android:name=".presentation.history.HistoryActivity"
         android:exported="true"
         android:screenOrientation="nosensor"
         tools:ignore="DiscouragedApi" />
 
     <activity
-        android:name=".presentation.registerPage.RegisterActivity"
+        android:name=".presentation.register.RegisterActivity"
         android:exported="true"
         android:screenOrientation="nosensor"
         tools:ignore="DiscouragedApi" />
 
     <activity
-        android:name=".presentation.mainPage.MainActivity"
+        android:name=".presentation.main.MainActivity"
         android:exported="true"
         android:screenOrientation="nosensor"
         tools:ignore="DiscouragedApi" />

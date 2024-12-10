@@ -1,4 +1,4 @@
-package com.example.smartpaddy.presentation.cameraPage
+package com.example.smartpaddy.presentation.camera
 
 import android.os.Bundle
 import android.view.LayoutInflater

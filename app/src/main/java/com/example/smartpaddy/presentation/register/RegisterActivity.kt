@@ -1,4 +1,4 @@
-package com.example.smartpaddy.presentation.registerPage
+package com.example.smartpaddy.presentation.register
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.smartpaddy.R
 import com.example.smartpaddy.databinding.ActivityRegisterBinding
-import com.example.smartpaddy.presentation.loginPage.LoginActivity
+import com.example.smartpaddy.presentation.login.LoginActivity
 import com.example.smartpaddy.utils.Constants
 
 class RegisterActivity : AppCompatActivity() {
