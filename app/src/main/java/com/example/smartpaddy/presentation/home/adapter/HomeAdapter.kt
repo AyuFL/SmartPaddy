@@ -1,23 +1,24 @@
 package com.example.smartpaddy.presentation.home.adapter
 
-import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.smartpaddy.data.response.DataResponse
 
-class HomeAdapter : Adapter<HistoryViewHolder>() {
+class HomeAdapter : Adapter<HomeViewHolder>() {
 
   private var historyList: List<DataResponse> = listOf()
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
     return HomeViewHolder.create(parent)
   }
 
-  override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
+  override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
+    val imageUrl = historyList[position].imageUrl
     val historyItem = historyList[position].result
-    holder.bind(historyItem)
 
-    Log.e("bella", "ini historyItem $historyItem")
+    if (imageUrl != null) {
+      holder.bind(historyItem, imageUrl)
+    }
   }
 
   override fun getItemCount(): Int {
@@ -26,6 +27,6 @@ class HomeAdapter : Adapter<HistoryViewHolder>() {
 
   fun setHistoryList(historyList: List<DataResponse>) {
     this.historyList = historyList
-    notifyItemRangeInserted(0, historyList.size)
+    notifyDataSetChanged()
   }
 }

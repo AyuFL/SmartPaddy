@@ -19,8 +19,8 @@ interface ApiService {
   @Multipart
   @POST("scan")
   suspend fun scan(
-    @Part("imageUri") imageUri: MultipartBody.Part,
-    @Part("userIds") userIds: RequestBody
+    @Part imageUri: MultipartBody.Part,
+    @Part("userIds") token: RequestBody
   ): PostResponse
 
   @GET("post/{id}")
@@ -30,7 +30,7 @@ interface ApiService {
 
   @GET("history/{user_id}")
   suspend fun getHistory(
-    @Path("user_id") userId: String
+    @Path("user_id") token: String
   ): HistoryResponse
 
   @POST("register")

@@ -9,6 +9,9 @@ data class DataResponse(
   @field:SerializedName("user_id")
   val userId: String? = "",
 
+  @field:SerializedName("image_url")
+  val imageUrl: String? = "",
+
   @field:SerializedName("result")
   val result: ResultResponse
 )

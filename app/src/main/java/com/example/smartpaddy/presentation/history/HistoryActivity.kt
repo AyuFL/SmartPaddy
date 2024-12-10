@@ -8,7 +8,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smartpaddy.databinding.ActivityHistoryBinding
-import com.example.smartpaddy.presentation.home.adapter.HistoryAdapter
+import com.example.smartpaddy.presentation.history.adapter.HistoryAdapter
+import com.example.smartpaddy.utils.Constants
 
 class HistoryActivity : AppCompatActivity() {
 
@@ -32,7 +33,11 @@ class HistoryActivity : AppCompatActivity() {
   }
 
   private fun setupView() {
-    viewModel.getHistory()
+    val token = getToken()
+
+    if (token != "token" && token != null) {
+      viewModel.getHistory(token)
+    }
 
     val adapter = HistoryAdapter()
 
@@ -51,5 +56,10 @@ class HistoryActivity : AppCompatActivity() {
 
   private fun showLoading(isLoading: Boolean) {
 //    binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
+  }
+
+  private fun getToken(): String? {
+    val sharedPreferences = getSharedPreferences(Constants.login, MODE_PRIVATE)
+    return sharedPreferences.getString(Constants.token, null)
   }
 }

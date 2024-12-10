@@ -17,12 +17,12 @@ class HomeViewModel : ViewModel() {
   private val _isLoading = MutableLiveData<Boolean>()
   val isLoading: LiveData<Boolean> = _isLoading
 
-  fun getHistory() {
+  fun getHistory(token: String) {
     _isLoading.value = true
     viewModelScope.launch {
       try {
         val apiService = ApiConfig.getApiService()
-        val response = apiService.getHistory("kxWXlxIxO9dX3TJE")
+        val response = apiService.getHistory(token)
 
         if (response.status == "success") {
           _history.postValue(response)

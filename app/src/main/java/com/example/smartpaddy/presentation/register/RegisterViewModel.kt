@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.smartpaddy.data.request.RegisterRequest
 import com.example.smartpaddy.data.response.RegisterResponse
 import com.example.smartpaddy.data.response.UserResponse
 import com.example.smartpaddy.data.retrofit.ApiConfig
-import com.example.smartpaddy.data.request.RegisterRequest
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException

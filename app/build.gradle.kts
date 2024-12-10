@@ -26,6 +26,7 @@ android {
 
   buildFeatures {
     viewBinding = true
+    buildConfig = true
   }
 
   compileOptions {
@@ -62,4 +63,7 @@ dependencies {
 
   // Logging Interceptor
   implementation(libs.logging.interceptor)
+
+  // Glide
+  implementation(libs.glide)
 }

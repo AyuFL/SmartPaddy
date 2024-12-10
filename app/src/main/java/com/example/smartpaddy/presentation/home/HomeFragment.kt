@@ -1,8 +1,8 @@
 package com.example.smartpaddy.presentation.home
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.smartpaddy.databinding.FragmentHomeBinding
 import com.example.smartpaddy.presentation.history.HistoryActivity
 import com.example.smartpaddy.presentation.home.adapter.HomeAdapter
+import com.example.smartpaddy.utils.Constants
 
 class HomeFragment : Fragment() {
 
@@ -30,13 +31,12 @@ class HomeFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    viewModel.getHistory()
+    fetchData()
 
     val adapter = HomeAdapter()
 
     viewModel.history.observe(viewLifecycleOwner) { history ->
       showLoading(false)
-      Log.e("bella", "${history.data}")
       binding.paddyCountTv.text = history.data.size.toString()
 
       adapter.setHistoryList(history.data)
@@ -57,5 +57,23 @@ class HomeFragment : Fragment() {
 
   private fun showLoading(isLoading: Boolean) {
 //    binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
+  }
+
+  private fun getToken(): String? {
+    val sharedPreferences = requireContext().getSharedPreferences(Constants.login, MODE_PRIVATE)
+    return sharedPreferences.getString(Constants.token, null)
+  }
+
+  override fun onResume() {
+    super.onResume()
+    fetchData()
+  }
+
+  private fun fetchData() {
+    val token = getToken()
+
+    if (token != "token" && token != null) {
+      viewModel.getHistory(token)
+    }
   }
 }
