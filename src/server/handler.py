@@ -155,6 +155,7 @@ def get_history(user_id):
         response_history = [{
             "predict_id": data['predict_id'],
             "image_url": data['image_url'],
+            "created_at": data['created_at'],
             "result": data['result']
         } for data in history]
 
