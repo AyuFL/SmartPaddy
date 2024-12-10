@@ -1,4 +1,4 @@
-package com.example.smartpaddy.ui.home
+package com.example.smartpaddy.presentation.home
 
 import android.util.Log
 import androidx.lifecycle.LiveData

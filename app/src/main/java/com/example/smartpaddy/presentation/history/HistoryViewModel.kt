@@ -1,4 +1,4 @@
-package com.example.smartpaddy.ui.history
+package com.example.smartpaddy.presentation.history
 
 import android.util.Log
 import androidx.lifecycle.LiveData

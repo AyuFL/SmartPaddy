@@ -1,4 +1,4 @@
-package com.example.smartpaddy.ui.profile
+package com.example.smartpaddy.presentation.profile
 
 class ProfileViewModel {
 }

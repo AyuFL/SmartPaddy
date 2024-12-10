@@ -11,8 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartpaddy.databinding.FragmentHomeBinding
-import com.example.smartpaddy.ui.history.HistoryActivity
-import com.example.smartpaddy.ui.home.adapter.HomeAdapter
+import com.example.smartpaddy.presentation.history.HistoryActivity
+import com.example.smartpaddy.presentation.home.adapter.HomeAdapter
 
 class HomeFragment : Fragment() {
 

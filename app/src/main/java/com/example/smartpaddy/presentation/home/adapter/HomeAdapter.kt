@@ -1,4 +1,4 @@
-package com.example.smartpaddy.ui.home.adapter
+package com.example.smartpaddy.presentation.home.adapter
 
 import android.util.Log
 import android.view.ViewGroup

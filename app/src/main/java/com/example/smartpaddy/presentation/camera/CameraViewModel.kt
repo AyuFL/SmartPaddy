@@ -1,4 +1,6 @@
-package com.example.smartpaddy.ui.camera
+package com.example.smartpaddy.presentation.camera
 
-class CameraViewModel {
+import androidx.lifecycle.ViewModel
+
+class CameraViewModel : ViewModel() {
 }
