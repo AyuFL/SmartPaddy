@@ -1,3 +1,4 @@
+<img src="image/SmartPaddy Logo.jpeg">
 
 # SmartPaddy - Smart App For Farmers
 
@@ -20,7 +21,13 @@ Our team consist of 2 Cloud Computing, 2 Mobile Development, 3 Machine Learning.
 
 ## About this project
 
-SmartPaddy is an Application designed to Detect Diseases in Rice Plants
+SmartPaddy is an application designed to support local farmers in identifying pests and plant diseases, particularly in rice crops. This application aims to address the issue of farmers' limited understanding of pests and diseases that can threaten rice productivity.
+
+# Dataset Source
+[Rice Leaf Disease Detection](https://www.kaggle.com/datasets/loki4514/rice-leaf-diseases-detection)
+
+# Cloud Architecture
+<img src="image/Cloud Architecture.jpeg" width=700>
 
 ## Repositories
 
@@ -28,4 +35,4 @@ SmartPaddy is an Application designed to Detect Diseases in Rice Plants
 | :----------------: | :-----------------------------------------------------------: |
 | Mobile Development | [MD Branch](https://github.com/AyuFL/SmartPaddy/tree/md-main) |
 |  Cloud Computing   | [CC Branch](https://github.com/AyuFL/SmartPaddy/tree/cc-main) |
-|  Machine Learning  | [ML Branch](https://github.com/AyuFL/SmartPaddy/tree/main)    |
+|  Machine Learning  | [ML Branch](https://github.com/AyuFL/SmartPaddy/tree/ml-main) |
