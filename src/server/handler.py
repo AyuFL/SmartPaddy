@@ -1,5 +1,7 @@
 import bcrypt
 import os
+import argon2
+from argon2.exceptions import VerifyMismatchError
 from nanoid import generate
 from flask import request, jsonify, current_app
 from io import BytesIO
@@ -10,6 +12,8 @@ from google.cloud import firestore
 from werkzeug.utils import secure_filename
 from datetime import datetime
 from google.cloud import storage
+
+argon_hash = argon2.PasswordHasher()
 
 def regis_user_handler():
     data = request.get_json()
@@ -22,25 +26,30 @@ def regis_user_handler():
 
     if any(user['email'] == email for user in users):
         return jsonify({'status': 'fail', 'message': 'Email sudah terdaftar'}), 400
-
-    hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-    token = generate(size=16)
     
-    new_user = {
-        'token': token,
-        'name': name,
-        'email': email,
-        'password': hashed_password
-    }
+    try:
+        hashed_password = argon_hash.hash(password.encode('utf-8'))
+        token = generate(size=16)
     
-    users.append(new_user)
-    store_user_data(new_user)
+        new_user = {
+            'token': token,
+            'name': name,
+            'email': email,
+            'hashed_password': hashed_password
+        }
     
-    return jsonify({
-        'status': 'success',
-        'message': 'User berhasil ditambahkan',
-        'user': {'token': token, 'name': name, 'email': email}
-    }), 201
+        users.append(new_user)
+        store_user_data(new_user)
+        
+        return jsonify({
+            'status': 'success',
+            'message': 'User berhasil ditambahkan',
+            'user': {'token': token, 'name': name, 'email': email}
+        }), 201
+    
+    except Exception as e:
+         print(f"An error occurred during registration: {e}")
+         return jsonify({"status": "error", "message": f"A server-side error occurred"}), 500
 
 def login_user_handler():
     data = request.get_json()
@@ -52,7 +61,10 @@ def login_user_handler():
 
     user = next((user for user in users if user['email'] == email), None)
     
-    if not user or not bcrypt.checkpw(password.encode('utf-8'), user['password'].encode('utf-8')):
+    if not user or 'hashed_password' not in user:
+        return jsonify({'status': 'fail', 'message': 'Email atau password salah'}), 401
+
+    if not verify_password(user['hashed_password'], password):
         return jsonify({'status': 'fail', 'message': 'Email atau password salah'}), 401
 
     return jsonify({
@@ -60,6 +72,12 @@ def login_user_handler():
         'token': user['token'],
         'message': 'Selamat datang di SmartPaddy'
     }), 200
+
+def verify_password(stored_hash, password):
+    try:
+        return argon_hash.verify(stored_hash, password.encode())
+    except VerifyMismatchError:
+        return False
 
 def upload_img_to_bucket(bucket_name, image_file, image_filename, predict_id):
     try:
