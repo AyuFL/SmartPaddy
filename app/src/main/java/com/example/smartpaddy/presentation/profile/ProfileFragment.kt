@@ -54,10 +54,10 @@ class ProfileFragment : Fragment() {
       viewModel.saveThemeSetting(isChecked)
     }
   }
-  }
 
   private fun showUserInfo() {
-    val sharedPreferences = requireContext().getSharedPreferences(Constants.login, Context.MODE_PRIVATE)
+    val sharedPreferences =
+      requireContext().getSharedPreferences(Constants.login, Context.MODE_PRIVATE)
     val token = sharedPreferences.getString(Constants.token, null)
     val name = sharedPreferences.getString(Constants.name, "Guest")
     val email = sharedPreferences.getString(Constants.email, "Email")

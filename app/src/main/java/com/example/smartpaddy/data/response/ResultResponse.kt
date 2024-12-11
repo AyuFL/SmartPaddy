@@ -2,7 +2,7 @@ package com.example.smartpaddy.data.response
 
 import com.google.gson.annotations.SerializedName
 
-data class ResultResponse (
+data class ResultResponse(
   @field:SerializedName("c_menangani")
   val caraMenangani: String,
 

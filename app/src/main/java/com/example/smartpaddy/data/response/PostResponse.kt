@@ -2,7 +2,7 @@ package com.example.smartpaddy.data.response
 
 import com.google.gson.annotations.SerializedName
 
-data class PostResponse (
+data class PostResponse(
   @field:SerializedName("status")
   val status: String? = "",
 

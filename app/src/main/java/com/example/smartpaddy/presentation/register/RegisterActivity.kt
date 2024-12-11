@@ -46,7 +46,11 @@ class RegisterActivity : AppCompatActivity() {
         Toast.makeText(this, getString(R.string.registration_success), Toast.LENGTH_SHORT).show()
         goToLoginPage()
       } else {
-        Toast.makeText(this, response.message ?: getString(R.string.registration_failed), Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+          this,
+          response.message ?: getString(R.string.registration_failed),
+          Toast.LENGTH_SHORT
+        ).show()
         registerClicked = false
       }
     }
@@ -61,12 +65,15 @@ class RegisterActivity : AppCompatActivity() {
       name.isEmpty() || email.isEmpty() || password.isEmpty() -> {
         showValidationError(getString(R.string.email_pass_empty))
       }
+
       !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
         showValidationError(getString(R.string.email_not_valid))
       }
+
       !passwordPatterns.matcher(password).matches() -> {
         showValidationError(getString(R.string.password_not_valid))
       }
+
       else -> {
         showLoading(true)
         viewModel.register(name, email, password)

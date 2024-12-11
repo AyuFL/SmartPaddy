@@ -68,7 +68,8 @@ class HomeFragment : Fragment() {
   }
 
   private fun greetings() {
-    val sharedPreferences = requireContext().getSharedPreferences(Constants.login, Context.MODE_PRIVATE)
+    val sharedPreferences =
+      requireContext().getSharedPreferences(Constants.login, MODE_PRIVATE)
     val token = sharedPreferences.getString(Constants.token, null)
     val name = sharedPreferences.getString(Constants.name, "Guest")
 
@@ -80,7 +81,7 @@ class HomeFragment : Fragment() {
   }
 
   private fun logoutUser(context: Context) {
-    val sharedPreferences = context.getSharedPreferences(Constants.login, Context.MODE_PRIVATE)
+    val sharedPreferences = context.getSharedPreferences(Constants.login, MODE_PRIVATE)
     with(sharedPreferences.edit()) {
       remove(Constants.name)
       remove(Constants.email)
