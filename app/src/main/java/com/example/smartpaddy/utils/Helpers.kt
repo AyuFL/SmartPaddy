@@ -1,5 +1,4 @@
 package com.example.smartpaddy.utils
-
 import android.content.ContentValues
 import android.content.Context
 import android.net.Uri
@@ -33,30 +32,37 @@ fun uriToFile(imageUri: Uri, context: Context): File {
 }
 
 fun createCustomTempFile(context: Context): File {
-  val filesDir = context.externalCacheDir
+  val filesDir = context.externalCacheDir ?: context.cacheDir
   return File.createTempFile(timeStamp, ".jpg", filesDir)
 }
 
 fun getImageUri(context: Context): Uri {
-  var uri: Uri? = null
-  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-    val contentValues = ContentValues().apply {
-      put(MediaStore.MediaColumns.DISPLAY_NAME, "$timeStamp.jpg")
-      put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
-      put(MediaStore.MediaColumns.RELATIVE_PATH, "Pictures/MyCamera/")
-    }
-    uri = context.contentResolver.insert(
-      MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-      contentValues
-    )
+  return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+    getImageUriForQAndAbove(context)
+  } else {
+    getImageUriForBelowQ(context)
   }
-  return uri ?: getImageUriForPreQ(context)
 }
 
-private fun getImageUriForPreQ(context: Context): Uri {
-  val filesDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-  val imageFile = File(filesDir, "/MyCamera/$timeStamp.jpg")
-  if (imageFile.parentFile?.exists() == false) imageFile.parentFile?.mkdir()
+private fun getImageUriForQAndAbove(context: Context): Uri {
+  val contentValues = ContentValues().apply {
+    put(MediaStore.MediaColumns.DISPLAY_NAME, "$timeStamp.jpg")
+    put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
+    put(MediaStore.MediaColumns.RELATIVE_PATH, "Pictures/MyCamera/")
+  }
+  return context.contentResolver.insert(
+    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+    contentValues
+  ) ?: throw IllegalStateException("Failed to create image URI")
+}
+
+private fun getImageUriForBelowQ(context: Context): Uri {
+  val picturesDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+  val imageDir = File(picturesDir, "MyCamera")
+  if (!imageDir.exists()) {
+    imageDir.mkdirs() // Ensure the directory exists
+  }
+  val imageFile = File(imageDir, "$timeStamp.jpg")
   return FileProvider.getUriForFile(
     context,
     "${BuildConfig.APPLICATION_ID}.fileprovider",
