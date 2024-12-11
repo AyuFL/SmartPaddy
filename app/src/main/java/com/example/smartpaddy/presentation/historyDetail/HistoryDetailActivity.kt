@@ -1,6 +1,7 @@
 package com.example.smartpaddy.presentation.historyDetail
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -19,8 +20,8 @@ class HistoryDetailActivity : AppCompatActivity() {
     enableEdgeToEdge()
 
     binding = ActivityHistoryDetailBinding.inflate(layoutInflater)
-
     setContentView(binding.root)
+
     ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
       val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
       v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -28,6 +29,7 @@ class HistoryDetailActivity : AppCompatActivity() {
     }
 
     setupView()
+    observeViewModel()
   }
 
   private fun setupView() {
@@ -52,14 +54,27 @@ class HistoryDetailActivity : AppCompatActivity() {
     }
   }
 
+  private fun observeViewModel() {
+    viewModel.isLoading.observe(this) { isLoading ->
+      showLoading(isLoading)
+    }
+  }
+
+  private fun showLoading(isLoading: Boolean) {
+    binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
+    binding.paddyIv.visibility = if (isLoading) View.GONE else View.VISIBLE
+    binding.caraTitle.visibility = if (isLoading) View.GONE else View.VISIBLE
+    binding.gejalaTitle.visibility = if (isLoading) View.GONE else View.VISIBLE
+    binding.penjelasanTitle.visibility = if (isLoading) View.GONE else View.VISIBLE
+  }
+
   private fun formatParagraph(input: String): String {
     val regex = "(?<=\\s)(\\d+\\.|[a-zA-Z]\\.)".toRegex()
-
     return input.replace(regex) { matchResult ->
       if (matchResult.value.matches(Regex("\\d+\\."))) {
-        return@replace "\n${matchResult.value}"
+        "\n${matchResult.value}"
       } else {
-        return@replace "\n\t${matchResult.value}"
+        "\n\t${matchResult.value}"
       }
     }
   }

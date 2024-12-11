@@ -1,8 +1,11 @@
 package com.example.smartpaddy.presentation.home.adapter
 
+import android.content.Intent
+import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.smartpaddy.data.response.DataResponse
+import com.example.smartpaddy.presentation.historyDetail.HistoryDetailActivity
 
 class HomeAdapter : Adapter<HomeViewHolder>() {
 
@@ -18,6 +21,15 @@ class HomeAdapter : Adapter<HomeViewHolder>() {
 
     if (imageUrl != null) {
       holder.bind(historyItem, imageUrl)
+    }
+
+    val postId = historyList[position].predictId
+
+    holder.itemView.setOnClickListener {
+      val intentToHistoryDetail = Intent(holder.itemView.context, HistoryDetailActivity::class.java)
+      intentToHistoryDetail.putExtra("imageUrl", imageUrl)
+      intentToHistoryDetail.putExtra("postId", postId)
+      holder.itemView.context.startActivity(intentToHistoryDetail)
     }
   }
 

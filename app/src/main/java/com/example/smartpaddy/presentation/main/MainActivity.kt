@@ -2,7 +2,9 @@ package com.example.smartpaddy.presentation.main
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
@@ -11,10 +13,12 @@ import com.example.smartpaddy.databinding.ActivityMainBinding
 import com.example.smartpaddy.presentation.camera.CameraFragment
 import com.example.smartpaddy.presentation.home.HomeFragment
 import com.example.smartpaddy.presentation.profile.ProfileFragment
+import com.example.smartpaddy.presentation.profile.ProfileViewModel
 
 class MainActivity : AppCompatActivity() {
 
   private lateinit var binding: ActivityMainBinding
+  private val profileViewModel: ProfileViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -38,6 +42,14 @@ class MainActivity : AppCompatActivity() {
       CameraFragment(),
       ProfileFragment()
     )
+
+    profileViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+      if (isDarkModeActive) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+      } else {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+      }
+    }
 
     val adapter = ViewPagerAdapter(this, fragments)
     val viewPager = binding.viewPager

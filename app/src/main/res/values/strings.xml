@@ -30,4 +30,11 @@
   <string name="registration_failed">Registration failed</string>
   <string name="greetings">Hi, %1$s!</string>
   <string name="here_s_your_detected_diseases_recap">Here\'s your detected diseases recap!</string>
+  <string name="analyze">Analyze</string>
+  <string name="gallery">Gallery</string>
+  <string name="dark_mode">Dark Mode</string>
+  <string name="log_out">Log out</string>
+  <string name="let_s_learn_more_about_plants">Let\'s Learn More About Plants</string>
+  <string name="gejala">Gejala</string>
+  <string name="cara_menangani">Cara Menangani</string>
 </resources>

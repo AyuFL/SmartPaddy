@@ -13,7 +13,7 @@
       android:id="@+id/toolbar"
       android:layout_width="match_parent"
       android:layout_height="@dimen/dimen_100"
-      android:background="@color/green"
+      android:background="?attr/colorPrimary"
       android:padding="24dp"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="match_parent"
-          android:text="Let's Learn More About Plants"
+          android:text="@string/let_s_learn_more_about_plants"
           android:textColor="@color/white"
           android:fontFamily="@font/regular"
           android:textSize="@dimen/font_12"/>
@@ -46,6 +46,7 @@
         android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/log_out"
         android:src="@drawable/baseline_logout_24"
         android:background="@null"
         android:layout_gravity="end"
@@ -84,7 +85,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:textSize="@dimen/font_45"
-        android:textColor="@color/dark_green"
+        android:textColor="?attr/colorTertiary"
         android:fontFamily="@font/extrabold"
         />
 
@@ -141,6 +142,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:visibility="gone"
+      android:indeterminateTint="?attr/colorPrimary"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"

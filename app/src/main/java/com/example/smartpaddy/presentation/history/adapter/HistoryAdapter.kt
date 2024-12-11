@@ -31,7 +31,6 @@ class HistoryAdapter : Adapter<HistoryViewHolder>() {
       val intentToHistoryDetail = Intent(holder.itemView.context, HistoryDetailActivity::class.java)
       intentToHistoryDetail.putExtra("imageUrl", imageUrl)
       intentToHistoryDetail.putExtra("postId", postId)
-      Log.e("bella", "ini postId $postId")
       holder.itemView.context.startActivity(intentToHistoryDetail)
     }
   }

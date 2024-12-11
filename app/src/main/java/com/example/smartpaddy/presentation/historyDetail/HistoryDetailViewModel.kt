@@ -12,11 +12,14 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class HistoryDetailViewModel : ViewModel() {
-
   private val _history = MutableLiveData<ResultResponse>()
   val history: LiveData<ResultResponse> = _history
 
+  private val _isLoading = MutableLiveData<Boolean>()
+  val isLoading: LiveData<Boolean> = _isLoading
+
   fun getHistoryDetail(postId: String) {
+    _isLoading.value = true
     viewModelScope.launch {
       try {
         val apiService = ApiConfig.getApiService()
@@ -32,8 +35,9 @@ class HistoryDetailViewModel : ViewModel() {
           errorMessage = parseErrorResponse(errorBody)?.message ?: "Error: ${e.message()}"
         }
         Log.e("bella", errorMessage)
+      } finally {
+        _isLoading.value = false
       }
-
     }
   }
 }

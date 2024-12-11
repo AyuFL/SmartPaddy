@@ -13,7 +13,7 @@
       android:id="@+id/toolbar"
       android:layout_width="match_parent"
       android:layout_height="55dp"
-      android:background="@color/green"
+      android:background="?attr/colorPrimary"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/bold"
-        android:text="Profile"
+        android:text="@string/profile"
         android:textColor="@color/white"
         android:textSize="@dimen/font_20"
         />
@@ -46,7 +46,7 @@
       android:layout_marginTop="100dp"
       android:fontFamily="@font/bold"
       android:text="Bella S"
-      android:textColor="@color/dark_green"
+      android:textColor="?attr/colorTertiary"
       android:textSize="@dimen/font_24"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
       android:layout_marginTop="20dp"
       android:fontFamily="@font/semibold"
       android:text="bella@gmail.com"
-      android:textColor="@color/dark_green"
+      android:textColor="?attr/colorTertiary"
       android:textSize="@dimen/font_20"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -72,8 +72,9 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="8dp"
-      android:text="Log out"
+      android:text="@string/log_out"
       android:background="@drawable/button_light_green"
+      android:textColor="@color/white"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/user_email_tv"
@@ -94,10 +95,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
-        android:text="Dark Mode"
+        android:text="@string/dark_mode"
         android:textSize="@dimen/font_20"
         android:fontFamily="@font/bold"
-        android:textColor="@color/dark_green"
+        android:textColor="?attr/colorTertiary"
         />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
@@ -106,6 +107,5 @@
         android:layout_height="wrap_content"
         app:thumbTint="@color/switch_thumb_color"
         app:trackTint="@color/switch_track_color" />
-    />
   </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
