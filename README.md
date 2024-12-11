@@ -1,4 +1,4 @@
-## **🌾 Project Overview**  
+## **SmartPaddy Model Documentation**  
 **SmartPaddy** utilizes Convolutional Neural Networks (CNNs) to classify rice leaf conditions into six categories:  
 1. **Healthy**  
 2. **Blight**  
