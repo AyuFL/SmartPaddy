@@ -36,7 +36,7 @@ The application processes images captured by users and provides disease identifi
 
 ## **📁 Repository Structure**  
 ```
-SmartPaddy/
+Machine Learning/
 ├── Rice Leaf/               # Raw rice leaf images used for training and testing
 ├── data_test/               # Test dataset for evaluating model performance
 ├── SmartPaddy/              # Core machine learning scripts and resources
