@@ -26,6 +26,18 @@ Our team consist of 2 Cloud Computing, 2 Mobile Development, 3 Machine Learning.
 ## Dataset Source
 [Rice Leaf Disease Detection](https://www.kaggle.com/datasets/loki4514/rice-leaf-diseases-detection)
 
+## Tech Stack 
+
+Cloud Computing Team :
+- Flask
+- Python
+Machine Learning Team :
+- Jupyter Notebook
+- TensorFlow
+- Scikit-Learn
+- Matplotlib
+Mobile Dev Team :
+
 ## Cloud Architecture
 <img src="image/Cloud Architecture.jpeg" width=700>
 
