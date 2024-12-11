@@ -12,9 +12,9 @@
   <androidx.appcompat.widget.Toolbar
       android:id="@+id/toolbar"
       android:layout_width="match_parent"
-      android:layout_height="@dimen/dimen_100"
       android:background="?attr/colorPrimary"
-      android:padding="24dp"
+      android:layout_height="@dimen/dimen_75"
+      android:padding="10dp"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" >

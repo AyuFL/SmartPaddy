@@ -13,17 +13,39 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="match_parent"
+  <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="?attr/colorPrimary"
+      android:minHeight="?attr/actionBarSize"
+      android:theme="?attr/actionBarTheme"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      >
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="@null"
+        android:src="@drawable/ic_back"
+        tools:ignore="ContentDescription"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/bold"
+        android:text="@string/history_detail"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_20"
+        />
+
+  </androidx.appcompat.widget.Toolbar>
+
 
     <ImageView
         android:id="@+id/paddy_iv"
@@ -35,7 +57,7 @@
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         />
 
     <TextView
@@ -67,7 +89,7 @@
         android:id="@+id/penjelasan_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Penjelasan"
+        android:text="@string/penjelasan"
         android:textSize="18sp"
         android:textStyle="bold"
         android:padding="12dp"

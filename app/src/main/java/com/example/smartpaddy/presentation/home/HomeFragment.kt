@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,6 +42,7 @@ class HomeFragment : Fragment() {
 
     viewModel.history.observe(viewLifecycleOwner) { history ->
       showLoading(false)
+      Log.e("bella", "${history.data}")
       binding.paddyCountTv.text = history.data.size.toString()
 
       adapter.setHistoryList(history.data)

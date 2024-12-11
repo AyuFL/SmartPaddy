@@ -1,4 +1,4 @@
-package com.example.smartpaddy.presentation.login
+package com.example.smartpaddy.presentation.loginPage
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -26,7 +26,8 @@ class LoginViewModel : ViewModel() {
             status = "success",
             message = response.message,
             token = response.token,
-            name = response.name
+            name = response.name,
+            email = response.email
           )
         } else {
           _loginResponse.value = LoginResponse(status = "fail", message = response.message)

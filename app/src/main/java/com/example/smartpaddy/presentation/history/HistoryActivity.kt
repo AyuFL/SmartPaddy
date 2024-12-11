@@ -30,6 +30,10 @@ class HistoryActivity : AppCompatActivity() {
       insets
     }
 
+    binding.btnBack.setOnClickListener {
+      onBackPressedDispatcher.onBackPressed()
+    }
+
     setupView()
   }
 

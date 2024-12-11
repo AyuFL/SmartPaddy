@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.smartpaddy.R
 import com.example.smartpaddy.databinding.ActivityLoginBinding
+import com.example.smartpaddy.presentation.loginPage.LoginViewModel
 import com.example.smartpaddy.presentation.main.MainActivity
 import com.example.smartpaddy.presentation.register.RegisterActivity
 import com.example.smartpaddy.utils.Constants
@@ -43,8 +44,12 @@ class LoginActivity : AppCompatActivity() {
   private fun observeLoginResponse() {
     viewModel.loginResponse.observe(this) { response ->
       showLoading(false)
-      if (response.status == "success" && !response.token.isNullOrEmpty() && !response.name.isNullOrEmpty()) {
-        saveLoginDetailsToSharedPreferences(response.token, response.name)
+      if (response.status == "success" && !response.token.isNullOrEmpty() && !response.name.isNullOrEmpty() && !response.email.isNullOrEmpty()) {
+        saveLoginDetailsToSharedPreferences(
+          response.token,
+          response.name,
+          response.email
+        )
         navigateToMainActivity()
       } else {
         Toast.makeText(
@@ -56,17 +61,17 @@ class LoginActivity : AppCompatActivity() {
     }
   }
 
-  private fun saveLoginDetailsToSharedPreferences(token: String, name: String) {
+  private fun saveLoginDetailsToSharedPreferences(token: String, name: String, email: String) {
     val sharedPreferences = getSharedPreferences(Constants.login, MODE_PRIVATE)
     with(sharedPreferences.edit()) {
       putString(Constants.token, token)
       putBoolean(Constants.login, true)
       putString(Constants.name, name)
+      putString(Constants.email, email)
       apply()
     }
     Log.d("LoginActivity", "Saved Token: $token, Name: $name")
   }
-
 
   private fun validateLogin() {
     val email = binding.etEmail.text.toString()
@@ -106,4 +111,3 @@ class LoginActivity : AppCompatActivity() {
     binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
   }
 }
-

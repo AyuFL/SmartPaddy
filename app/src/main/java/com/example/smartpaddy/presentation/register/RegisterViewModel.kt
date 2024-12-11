@@ -22,8 +22,14 @@ class RegisterViewModel : ViewModel() {
     viewModelScope.launch {
       try {
         val apiService = ApiConfig.getApiService()
+
+        // Create a RegisterRequest object with the input values
         val registerRequest = RegisterRequest(name, email, password)
+
+        // Make the API call using the @Body parameter
         val response = apiService.register(registerRequest)
+
+        // Update LiveData with the response
         _registerResponse.value = response
       } catch (e: HttpException) {
         _registerResponse.value = RegisterResponse(
