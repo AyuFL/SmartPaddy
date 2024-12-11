@@ -2,6 +2,10 @@
 
 # SmartPaddy - Smart App For Farmers
 
+## About this project
+
+SmartPaddy is an application designed to support local farmers in identifying pests and plant diseases, particularly in rice crops. This application aims to address the issue of farmers' limited understanding of pests and diseases that can threaten rice productivity.
+
 ## Bangkit Capstone Project 2024
 
 Bangkit Capstone Team ID : C242-PS186 </br>
@@ -19,14 +23,10 @@ Our team consist of 2 Cloud Computing, 2 Mobile Development, 3 Machine Learning.
 |             Rahmi              | M206B4KX3637 |   Machine Learning  |    [LinkedIn](https://www.linkedin.com/in/rahmi-811a77312)                   |
 |     Annisa Auliya Ramadhani    | M206B4KX0574 |   Machine Learning  |    [LinkedIn](https://www.linkedin.com/in/annisa-auliya-ramadhani-98a535285) |
 
-## About this project
-
-SmartPaddy is an application designed to support local farmers in identifying pests and plant diseases, particularly in rice crops. This application aims to address the issue of farmers' limited understanding of pests and diseases that can threaten rice productivity.
-
-# Dataset Source
+## Dataset Source
 [Rice Leaf Disease Detection](https://www.kaggle.com/datasets/loki4514/rice-leaf-diseases-detection)
 
-# Cloud Architecture
+## Cloud Architecture
 <img src="image/Cloud Architecture.jpeg" width=700>
 
 ## Repositories
