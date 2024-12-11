@@ -1,6 +1,5 @@
 package com.example.smartpaddy.presentation.home
 
-import HomeViewModel
 import android.content.Context.MODE_PRIVATE
 import android.content.Context
 import android.content.Intent
