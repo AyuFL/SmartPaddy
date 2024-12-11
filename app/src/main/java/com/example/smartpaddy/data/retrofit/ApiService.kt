@@ -6,12 +6,10 @@ import com.example.smartpaddy.data.response.HistoryResponse
 import com.example.smartpaddy.data.response.LoginResponse
 import com.example.smartpaddy.data.response.PostResponse
 import com.example.smartpaddy.data.response.RegisterResponse
-import com.example.smartpaddy.data.response.UserResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part

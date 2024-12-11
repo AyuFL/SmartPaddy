@@ -13,7 +13,6 @@ import com.example.smartpaddy.databinding.ActivityLoginBinding
 import com.example.smartpaddy.presentation.main.MainActivity
 import com.example.smartpaddy.presentation.register.RegisterActivity
 import com.example.smartpaddy.utils.Constants
-import com.example.smartpaddy.utils.Constants.name
 
 class LoginActivity : AppCompatActivity() {
 
@@ -43,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
 
   private fun observeLoginResponse() {
     viewModel.loginResponse.observe(this) { response ->
+      showLoading(false)
       if (response.status == "success" && !response.token.isNullOrEmpty() && !response.name.isNullOrEmpty()) {
         saveLoginDetailsToSharedPreferences(response.token, response.name)
         navigateToMainActivity()
@@ -82,6 +82,7 @@ class LoginActivity : AppCompatActivity() {
       return
     }
 
+    showLoading(true)
     viewModel.login(email, password)
   }
 
@@ -99,6 +100,10 @@ class LoginActivity : AppCompatActivity() {
   private fun isLoggedIn(): Boolean {
     val sharedPreferences = getSharedPreferences(Constants.login, MODE_PRIVATE)
     return sharedPreferences.getBoolean(Constants.login, false)
+  }
+
+  private fun showLoading(isLoading: Boolean) {
+    binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
   }
 }
 

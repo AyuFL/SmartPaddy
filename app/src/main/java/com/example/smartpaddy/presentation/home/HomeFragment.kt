@@ -1,7 +1,7 @@
 package com.example.smartpaddy.presentation.home
 
-import android.content.Context.MODE_PRIVATE
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -91,7 +91,7 @@ class HomeFragment : Fragment() {
   }
 
   private fun showLoading(isLoading: Boolean) {
-//    binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
+    binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
   }
 
   private fun getToken(): String? {

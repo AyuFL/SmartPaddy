@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -40,6 +41,8 @@ class RegisterActivity : AppCompatActivity() {
 
   private fun observeViewModel() {
     viewModel.registerResponse.observe(this) { response ->
+      showLoading(false)
+
       if (response.status == "success") {
         saveUserDetailsToSharedPreferences(
           response.user.token,
@@ -91,6 +94,7 @@ class RegisterActivity : AppCompatActivity() {
       }
 
       else -> {
+        showLoading(true)
         viewModel.register(name, email, password)
         return
       }
@@ -107,5 +111,7 @@ class RegisterActivity : AppCompatActivity() {
     finish()
   }
 
-
+  private fun showLoading(isLoading: Boolean) {
+    binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
+  }
 }

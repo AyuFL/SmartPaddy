@@ -1,6 +1,7 @@
 package com.example.smartpaddy.presentation.history
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smartpaddy.databinding.ActivityHistoryBinding
-import com.example.smartpaddy.presentation.history.HistoryViewModel
 import com.example.smartpaddy.presentation.history.adapter.HistoryAdapter
 import com.example.smartpaddy.utils.Constants
 
@@ -56,7 +56,8 @@ class HistoryActivity : AppCompatActivity() {
   }
 
   private fun showLoading(isLoading: Boolean) {
-//    binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
+    binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
+    binding.historyRv.visibility = if (isLoading) View.GONE else View.VISIBLE
   }
 
   private fun getToken(): String? {

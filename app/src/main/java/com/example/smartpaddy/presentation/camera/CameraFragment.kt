@@ -110,7 +110,8 @@ class CameraFragment : Fragment() {
   }
 
   private fun showLoading(isLoading: Boolean) {
-//    binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
+    binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
+    binding.analyzeBtn.visibility = if (isLoading) View.GONE else View.VISIBLE
   }
 
   fun showToast(context: Context, message: String) {

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
+import com.example.smartpaddy.R
 import com.example.smartpaddy.data.response.ResultResponse
 import com.example.smartpaddy.databinding.ItemHistoryBinding
 
@@ -17,6 +18,8 @@ class HomeViewHolder(private var binding: ItemHistoryBinding) : ViewHolder(bindi
 
       Glide.with(it.root)
         .load(imageUrl)
+        .placeholder(R.drawable.logo)
+        .error(R.drawable.logo)
         .into(it.paddyIv)
     }
   }
