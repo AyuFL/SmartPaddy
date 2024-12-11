@@ -67,8 +67,7 @@ Machine Learning/
 ### Installation  
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/your-repo-name/SmartPaddy.git](https://github.com/AyuFL/SmartPaddy.git
-   cd SmartPaddy
+   git clone https://github.com/AyuFL/SmartPaddy.git
    ```
 2. Install dependencies:  
    ```bash
