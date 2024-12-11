@@ -1,7 +1,7 @@
 package com.example.smartpaddy.data.model
 
 data class UserModel(
-  val name: String,
-  val email: String,
-  val token: String
+  val name: String? = null,
+  val email: String? = null,
+  val token: String? = null
 )

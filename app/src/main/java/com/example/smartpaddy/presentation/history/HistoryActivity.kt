@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smartpaddy.databinding.ActivityHistoryBinding
+import com.example.smartpaddy.presentation.history.HistoryViewModel
 import com.example.smartpaddy.presentation.history.adapter.HistoryAdapter
 import com.example.smartpaddy.utils.Constants
 

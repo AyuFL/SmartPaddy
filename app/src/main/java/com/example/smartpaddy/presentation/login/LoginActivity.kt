@@ -2,6 +2,7 @@ package com.example.smartpaddy.presentation.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
@@ -12,6 +13,7 @@ import com.example.smartpaddy.databinding.ActivityLoginBinding
 import com.example.smartpaddy.presentation.main.MainActivity
 import com.example.smartpaddy.presentation.register.RegisterActivity
 import com.example.smartpaddy.utils.Constants
+import com.example.smartpaddy.utils.Constants.name
 
 class LoginActivity : AppCompatActivity() {
 
@@ -22,6 +24,8 @@ class LoginActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     binding = ActivityLoginBinding.inflate(layoutInflater)
     setContentView(binding.root)
+
+    observeLoginResponse()
 
     if (isLoggedIn()) {
       navigateToMainActivity()
@@ -35,29 +39,34 @@ class LoginActivity : AppCompatActivity() {
     binding.tvRegister.setOnClickListener {
       goToRegisterPage(it)
     }
+  }
 
+  private fun observeLoginResponse() {
     viewModel.loginResponse.observe(this) { response ->
-      if (response.status == "success") {
-        response.token?.let { saveLoginState(it, response.message ?: "User") }
-
-        Toast.makeText(this, "Welcome ${response.message}", Toast.LENGTH_SHORT).show()
-
+      if (response.status == "success" && !response.token.isNullOrEmpty() && !response.name.isNullOrEmpty()) {
+        saveLoginDetailsToSharedPreferences(response.token, response.name)
         navigateToMainActivity()
       } else {
-        Toast.makeText(this, response.message ?: "Login failed", Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+          this,
+          response.message ?: getString(R.string.login_failed),
+          Toast.LENGTH_SHORT
+        ).show()
       }
     }
   }
 
-  private fun saveLoginState(token: String, userName: String) {
+  private fun saveLoginDetailsToSharedPreferences(token: String, name: String) {
     val sharedPreferences = getSharedPreferences(Constants.login, MODE_PRIVATE)
     with(sharedPreferences.edit()) {
-      putBoolean(Constants.isLoggedIn, true)
-      putString(Constants.userName, userName)
       putString(Constants.token, token)
+      putBoolean(Constants.login, true)
+      putString(Constants.name, name)
       apply()
     }
+    Log.d("LoginActivity", "Saved Token: $token, Name: $name")
   }
+
 
   private fun validateLogin() {
     val email = binding.etEmail.text.toString()
@@ -89,7 +98,7 @@ class LoginActivity : AppCompatActivity() {
 
   private fun isLoggedIn(): Boolean {
     val sharedPreferences = getSharedPreferences(Constants.login, MODE_PRIVATE)
-    return sharedPreferences.getBoolean(Constants.isLoggedIn, false)
+    return sharedPreferences.getBoolean(Constants.login, false)
   }
 }
 

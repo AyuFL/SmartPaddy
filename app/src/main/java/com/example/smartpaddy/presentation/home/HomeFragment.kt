@@ -1,6 +1,8 @@
 package com.example.smartpaddy.presentation.home
 
+import HomeViewModel
 import android.content.Context.MODE_PRIVATE
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.smartpaddy.R
 import com.example.smartpaddy.databinding.FragmentHomeBinding
 import com.example.smartpaddy.presentation.history.HistoryActivity
 import com.example.smartpaddy.presentation.home.adapter.HomeAdapter
+import com.example.smartpaddy.presentation.login.LoginActivity
 import com.example.smartpaddy.utils.Constants
 
 class HomeFragment : Fragment() {
@@ -32,6 +36,7 @@ class HomeFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
 
     fetchData()
+    greetings()
 
     val adapter = HomeAdapter()
 
@@ -49,10 +54,41 @@ class HomeFragment : Fragment() {
     binding.historyRv.adapter = adapter
     binding.historyRv.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
 
-    binding.historyBtnTv.setOnClickListener {
-      val intent = Intent(context, HistoryActivity::class.java)
-      startActivity(intent)
+    binding.apply {
+      historyBtnTv.setOnClickListener {
+        val intent = Intent(context, HistoryActivity::class.java)
+        startActivity(intent)
+      }
     }
+
+    binding.btnLogout.setOnClickListener {
+      logoutUser(requireContext())
+    }
+  }
+
+  private fun greetings() {
+    val sharedPreferences = requireContext().getSharedPreferences(Constants.login, Context.MODE_PRIVATE)
+    val token = sharedPreferences.getString(Constants.token, null)
+    val name = sharedPreferences.getString(Constants.name, "Guest")
+
+    if (token != null) {
+      binding.tvUsername.text = getString(R.string.greetings, name)
+    } else {
+      binding.tvUsername.text = getString(R.string.greetings, "Guest")
+    }
+  }
+
+  private fun logoutUser(context: Context) {
+    val sharedPreferences = context.getSharedPreferences(Constants.login, Context.MODE_PRIVATE)
+    with(sharedPreferences.edit()) {
+      remove(Constants.name)
+      remove(Constants.email)
+      remove(Constants.token)
+      remove(Constants.login)
+      apply()
+    }
+    val intent = Intent(context, LoginActivity::class.java)
+    startActivity(intent)
   }
 
   private fun showLoading(isLoading: Boolean) {
