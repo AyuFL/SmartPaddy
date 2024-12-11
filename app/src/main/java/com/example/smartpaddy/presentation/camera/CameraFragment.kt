@@ -39,7 +39,11 @@ class CameraFragment : Fragment() {
 
     binding.galleryBtn.setOnClickListener { startGallery() }
 
+<<<<<<< HEAD
     binding.analyzeBtn.setOnClickListener { startCamera() }
+=======
+    binding.cameraBtn.setOnClickListener { startCamera() }
+>>>>>>> refs/heads/md-bella
 
     binding.analyzeBtn.setOnClickListener { analyzeImage() }
 

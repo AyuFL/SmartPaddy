@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".presentation.profilePage.ProfileFragment"
+    tools:context=".presentation.profile.ProfileFragment"
     >
 
   <androidx.appcompat.widget.Toolbar
@@ -99,6 +99,7 @@
         android:fontFamily="@font/bold"
         android:textColor="@color/dark_green"
         />
+
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

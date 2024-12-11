@@ -1,5 +1,7 @@
 package com.example.smartpaddy.data.retrofit
 
+import com.example.smartpaddy.data.request.LoginRequest
+import com.example.smartpaddy.data.request.RegisterRequest
 import com.example.smartpaddy.data.response.HistoryResponse
 import com.example.smartpaddy.data.response.LoginResponse
 import com.example.smartpaddy.data.response.PostResponse
@@ -19,18 +21,18 @@ interface ApiService {
   @Multipart
   @POST("scan")
   suspend fun scan(
-    @Part("imageUri") imageUri: MultipartBody.Part,
-    @Part("userIds") userIds: RequestBody
+    @Part imageUri: MultipartBody.Part,
+    @Part("userIds") token: RequestBody
   ): PostResponse
 
-  @GET("post/{id}")
+  @GET("post/{predict_id}")
   suspend fun getDetailPost(
-    @Path("predict_id") id: String
+    @Path("predict_id") predictId: String
   ): PostResponse
 
   @GET("history/{user_id}")
   suspend fun getHistory(
-    @Path("user_id") userId: String
+    @Path("user_id") token: String
   ): HistoryResponse
 
   @POST("register")
