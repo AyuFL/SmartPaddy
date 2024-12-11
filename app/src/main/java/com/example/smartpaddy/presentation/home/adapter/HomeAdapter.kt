@@ -1,7 +1,6 @@
 package com.example.smartpaddy.presentation.home.adapter
 
 import android.content.Intent
-import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.smartpaddy.data.response.DataResponse
