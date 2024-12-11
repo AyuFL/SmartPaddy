@@ -31,14 +31,13 @@ Our team consist of 2 Cloud Computing, 2 Mobile Development, 3 Machine Learning.
 Cloud Computing Team :
 - Flask
 - Python
-<br>
+
 Machine Learning Team :
 - Jupyter Notebook
 - TensorFlow
 - Scikit-Learn
 - Matplotlib
 
-<br>
 Mobile Dev Team :
 
 ## Cloud Architecture
