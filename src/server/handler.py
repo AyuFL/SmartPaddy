@@ -69,6 +69,8 @@ def login_user_handler():
 
     return jsonify({
         'status': 'success',
+        'email': user['email'],
+        'name': user['name'],
         'token': user['token'],
         'message': 'Selamat datang di SmartPaddy'
     }), 200
