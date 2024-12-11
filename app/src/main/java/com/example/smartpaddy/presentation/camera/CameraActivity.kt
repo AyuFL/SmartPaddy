@@ -1,18 +1,14 @@
 package com.example.smartpaddy.presentation.camera
 
 import android.content.Context
-import android.content.Context.MODE_PRIVATE
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import com.example.smartpaddy.databinding.FragmentCameraBinding
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import com.example.smartpaddy.databinding.ActivityCameraBinding
 import com.example.smartpaddy.utils.Constants
 import com.example.smartpaddy.utils.getImageUri
 import com.example.smartpaddy.utils.uriToFile
@@ -21,30 +17,25 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 
-class CameraFragment : Fragment() {
+class CameraActivity : AppCompatActivity() {
 
-  private lateinit var binding: FragmentCameraBinding
+  private lateinit var binding: ActivityCameraBinding
   private val viewModel: CameraViewModel by viewModels()
 
-  override fun onCreateView(
-    inflater: LayoutInflater, container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View {
-    binding = FragmentCameraBinding.inflate(layoutInflater)
-    return binding.root
-  }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    binding = ActivityCameraBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
+    binding.apply {
+      galleryBtn.setOnClickListener { startGallery() }
+      cameraBtn.setOnClickListener { startCamera() }
+      analyzeBtn.setOnClickListener { analyzeImage() }
+      btnBack.setOnClickListener { finish() }
+    }
 
-    binding.galleryBtn.setOnClickListener { startGallery() }
-
-    binding.cameraBtn.setOnClickListener { startCamera() }
-
-    binding.analyzeBtn.setOnClickListener { analyzeImage() }
-
-    viewModel.message.observe(viewLifecycleOwner) {
-      showToast(requireContext(), it)
+    viewModel.message.observe(this) {
+      showToast(this, it)
     }
   }
 
@@ -62,7 +53,7 @@ class CameraFragment : Fragment() {
   }
 
   private fun startCamera() {
-    viewModel.currentImageUri = getImageUri(requireContext())
+    viewModel.currentImageUri = getImageUri(this)
     launcherIntentCamera.launch(viewModel.currentImageUri!!)
   }
 
@@ -84,7 +75,7 @@ class CameraFragment : Fragment() {
 
   private fun analyzeImage() {
     viewModel.currentImageUri?.let { uri ->
-      val imageFile = uriToFile(uri, requireContext())
+      val imageFile = uriToFile(uri, this)
 
       val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
       val multipartBody = MultipartBody.Part.createFormData(
@@ -100,17 +91,17 @@ class CameraFragment : Fragment() {
       if (token != null) {
         viewModel.analyzeImage(token, multipartBody)
       } else {
-        showToast(requireContext(), "Token is null. Failed to analyze")
+        showToast(this, "Token is null. Failed to analyze")
       }
     } ?: run {
-      showToast(requireContext(), "Please select an image first!")
+      showToast(this, "Please select an image first!")
     }
 
     showLoading(false)
   }
 
   private fun showLoading(isLoading: Boolean) {
-//    binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
+    // binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
   }
 
   fun showToast(context: Context, message: String) {
@@ -118,7 +109,7 @@ class CameraFragment : Fragment() {
   }
 
   private fun getToken(): String? {
-    val sharedPreferences = requireContext().getSharedPreferences(Constants.login, MODE_PRIVATE)
+    val sharedPreferences = getSharedPreferences(Constants.login, MODE_PRIVATE)
     return sharedPreferences.getString(Constants.token, null)
   }
 }

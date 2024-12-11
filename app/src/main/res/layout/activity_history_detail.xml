@@ -9,16 +9,36 @@
     >
 
   <androidx.appcompat.widget.Toolbar
-      android:id="@+id/toolbar2"
+      android:id="@+id/toolbar"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="?attr/colorPrimary"
-      android:minHeight="?attr/actionBarSize"
-      android:theme="?attr/actionBarTheme"
+      android:layout_height="55dp"
+      android:background="@color/green"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      />
+      >
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/ic_back"
+        tools:ignore="ContentDescription"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/bold"
+        android:text="@string/history_detail"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_20"
+        />
+
+  </androidx.appcompat.widget.Toolbar>
+
 
   <ImageView
       android:id="@+id/paddy_iv"
@@ -30,7 +50,7 @@
       android:src="@drawable/ic_launcher_background"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+      app:layout_constraintTop_toBottomOf="@+id/toolbar"
       />
 
   <TextView

@@ -42,6 +42,11 @@
         android:exported="true"
         android:screenOrientation="nosensor"
         tools:ignore="DiscouragedApi" />
+    <activity
+        android:name=".presentation.camera.CameraActivity"
+        android:exported="true"
+        android:screenOrientation="nosensor"
+        tools:ignore="DiscouragedApi"/>
   </application>
 
 </manifest>

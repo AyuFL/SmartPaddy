@@ -43,8 +43,12 @@ class LoginActivity : AppCompatActivity() {
 
   private fun observeLoginResponse() {
     viewModel.loginResponse.observe(this) { response ->
-      if (response.status == "success" && !response.token.isNullOrEmpty() && !response.name.isNullOrEmpty()) {
-        saveLoginDetailsToSharedPreferences(response.token, response.name)
+      if (response.status == "success" && !response.token.isNullOrEmpty() && !response.name.isNullOrEmpty() && !response.email.isNullOrEmpty()) {
+        saveLoginDetailsToSharedPreferences(
+          response.token,
+          response.name,
+          response.email
+        )
         navigateToMainActivity()
       } else {
         Toast.makeText(
@@ -56,17 +60,17 @@ class LoginActivity : AppCompatActivity() {
     }
   }
 
-  private fun saveLoginDetailsToSharedPreferences(token: String, name: String) {
+  private fun saveLoginDetailsToSharedPreferences(token: String, name: String, email: String) {
     val sharedPreferences = getSharedPreferences(Constants.login, MODE_PRIVATE)
     with(sharedPreferences.edit()) {
       putString(Constants.token, token)
       putBoolean(Constants.login, true)
       putString(Constants.name, name)
+      putString(Constants.email, email)
       apply()
     }
     Log.d("LoginActivity", "Saved Token: $token, Name: $name")
   }
-
 
   private fun validateLogin() {
     val email = binding.etEmail.text.toString()
