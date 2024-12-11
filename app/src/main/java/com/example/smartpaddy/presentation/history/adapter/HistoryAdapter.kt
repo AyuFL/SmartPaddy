@@ -1,17 +1,11 @@
 package com.example.smartpaddy.presentation.history.adapter
 
-<<<<<<< HEAD
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.example.smartpaddy.data.response.DataResponse
-=======
 import android.content.Intent
 import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.smartpaddy.data.response.DataResponse
 import com.example.smartpaddy.presentation.historyDetail.HistoryDetailActivity
->>>>>>> refs/heads/md-bella
 import com.example.smartpaddy.presentation.home.adapter.HistoryViewHolder
 import com.example.smartpaddy.presentation.home.adapter.HistoryViewHolder.Companion
 
@@ -30,8 +24,6 @@ class HistoryAdapter : Adapter<HistoryViewHolder>() {
     if (imageUrl != null) {
       holder.bind(historyItem, imageUrl)
     }
-<<<<<<< HEAD
-=======
 
     val postId = historyList[position].predictId
 
@@ -42,7 +34,6 @@ class HistoryAdapter : Adapter<HistoryViewHolder>() {
       Log.e("bella", "ini postId $postId")
       holder.itemView.context.startActivity(intentToHistoryDetail)
     }
->>>>>>> refs/heads/md-bella
   }
 
   override fun getItemCount(): Int {

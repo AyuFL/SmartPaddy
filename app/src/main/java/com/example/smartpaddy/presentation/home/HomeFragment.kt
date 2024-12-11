@@ -1,10 +1,6 @@
 package com.example.smartpaddy.presentation.home
 
-import android.content.Context.MODE_PRIVATE
-<<<<<<< HEAD
-=======
 import android.content.Context
->>>>>>> refs/heads/md-bella
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,17 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-<<<<<<< HEAD
-import com.example.smartpaddy.databinding.FragmentHomeBinding
-import com.example.smartpaddy.presentation.history.HistoryActivity
-import com.example.smartpaddy.presentation.home.adapter.HomeAdapter
-=======
 import com.example.smartpaddy.R
 import com.example.smartpaddy.databinding.FragmentHomeBinding
 import com.example.smartpaddy.presentation.history.HistoryActivity
 import com.example.smartpaddy.presentation.home.adapter.HomeAdapter
 import com.example.smartpaddy.presentation.login.LoginActivity
->>>>>>> refs/heads/md-bella
 import com.example.smartpaddy.utils.Constants
 
 class HomeFragment : Fragment() {
@@ -44,15 +34,13 @@ class HomeFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
 
     fetchData()
-<<<<<<< HEAD
-=======
     greetings()
->>>>>>> refs/heads/md-bella
 
     val adapter = HomeAdapter()
 
     viewModel.history.observe(viewLifecycleOwner) { history ->
       showLoading(false)
+      Log.e("bella", "${history.data}")
       binding.paddyCountTv.text = history.data.size.toString()
 
       adapter.setHistoryList(history.data)
@@ -65,12 +53,6 @@ class HomeFragment : Fragment() {
     binding.historyRv.adapter = adapter
     binding.historyRv.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
 
-<<<<<<< HEAD
-    binding.historyBtnTv.setOnClickListener {
-      val intent = Intent(context, HistoryActivity::class.java)
-      startActivity(intent)
-    }
-=======
     binding.apply {
       historyBtnTv.setOnClickListener {
         val intent = Intent(context, HistoryActivity::class.java)
@@ -106,7 +88,6 @@ class HomeFragment : Fragment() {
     }
     val intent = Intent(context, LoginActivity::class.java)
     startActivity(intent)
->>>>>>> refs/heads/md-bella
   }
 
   private fun showLoading(isLoading: Boolean) {

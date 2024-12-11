@@ -1,23 +1,15 @@
 package com.example.smartpaddy.presentation.home
 
-<<<<<<< HEAD
-=======
 import android.content.Context
->>>>>>> refs/heads/md-bella
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-<<<<<<< HEAD
-import com.example.smartpaddy.data.response.HistoryResponse
-import com.example.smartpaddy.data.retrofit.ApiConfig
-=======
 import com.example.smartpaddy.data.model.UserModel
 import com.example.smartpaddy.data.response.HistoryResponse
 import com.example.smartpaddy.data.retrofit.ApiConfig
 import com.example.smartpaddy.utils.Constants
->>>>>>> refs/heads/md-bella
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
@@ -28,12 +20,9 @@ class HomeViewModel : ViewModel() {
   private val _isLoading = MutableLiveData<Boolean>()
   val isLoading: LiveData<Boolean> = _isLoading
 
-<<<<<<< HEAD
-=======
   private val _userSession = MutableLiveData<UserModel>()
   val userSession: LiveData<UserModel> = _userSession
 
->>>>>>> refs/heads/md-bella
   fun getHistory(token: String) {
     _isLoading.value = true
     viewModelScope.launch {
@@ -51,8 +40,6 @@ class HomeViewModel : ViewModel() {
       }
     }
   }
-<<<<<<< HEAD
-=======
 
   fun fetchUserDetails(context: Context) {
     val sharedPreferences = context.getSharedPreferences(Constants.login, Context.MODE_PRIVATE)
@@ -73,5 +60,4 @@ class HomeViewModel : ViewModel() {
       )
     )
   }
->>>>>>> refs/heads/md-bella
 }
