@@ -13,6 +13,7 @@ class HomeViewHolder(private var binding: ItemHistoryBinding) : ViewHolder(bindi
     binding.let {
       it.accuracyTv.text = "${(historyItem.predictedProb * 100).toString().take(2)}%"
       it.classTv.text = historyItem.predictedClass
+      it.descTv.text = historyItem.penjelasan
 
       Glide.with(it.root)
         .load(imageUrl)

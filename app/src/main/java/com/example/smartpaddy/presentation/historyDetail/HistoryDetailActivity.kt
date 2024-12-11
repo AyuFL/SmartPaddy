@@ -46,7 +46,10 @@ class HistoryDetailActivity : AppCompatActivity() {
       Log.e("bella", "ini class ${history.predictedClass}")
       binding.accuracyTv.text = "${(history.predictedProb * 100).toString().take(2)}%"
       binding.classTv.text = history.predictedClass
-      binding.descTv.text = formatToNumberedList(history.caraMenangani)
+
+      binding.penjelasanTv.text = formatParagraph(history.penjelasan)
+      binding.gejalaTv.text = formatParagraph(history.gejala)
+      binding.caraTv.text = formatParagraph(history.caraMenangani)
 
       Glide.with(binding.root)
         .load(imageUrl)
@@ -66,17 +69,19 @@ class HistoryDetailActivity : AppCompatActivity() {
 //    binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
   }
 
-  fun formatToNumberedList(paragraph: String): String {
-    // Split the paragraph into individual points based on the pattern of numbered points
-    val points = paragraph.split(Regex("""\d+\.\s"""))
-      .filter { it.isNotBlank() } // Remove any empty results from split
+  private fun formatParagraph(input: String): String {
+    // Regex to match numbers or letters followed by a period with a space before them
+    val regex = "(?<=\\s)(\\d+\\.|[a-zA-Z]\\.)".toRegex()
 
-    // Format each point into a numbered list
-    val formattedList = points.mapIndexed { index, point ->
-      "${index + 1}. ${point.trim()}"
+    return input.replace(regex) { matchResult ->
+      // Check if the match is a number (followed by a dot)
+      if (matchResult.value.matches(Regex("\\d+\\."))) {
+        // No space for numbers, just return the match
+        return@replace "\n${matchResult.value}"
+      } else {
+        // For alphabets (add a tab/2 spaces before the match)
+        return@replace "\n\t${matchResult.value}"
+      }
     }
-
-    // Join the list back into a single string with line breaks
-    return formattedList.joinToString("\n")
   }
 }
