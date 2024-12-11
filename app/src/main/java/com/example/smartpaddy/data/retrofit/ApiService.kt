@@ -23,9 +23,9 @@ interface ApiService {
     @Part("userIds") token: RequestBody
   ): PostResponse
 
-  @GET("post/{id}")
+  @GET("post/{predict_id}")
   suspend fun getDetailPost(
-    @Path("predict_id") id: String
+    @Path("predict_id") predictId: String
   ): PostResponse
 
   @GET("history/{user_id}")

@@ -16,6 +16,9 @@
       android:theme="@style/Theme.SmartPaddy"
       tools:targetApi="31">
     <activity
+        android:name=".presentation.historyDetail.HistoryDetailActivity"
+        android:exported="false" />
+    <activity
         android:name=".presentation.login.LoginActivity"
         android:exported="true">
       <intent-filter>
@@ -24,25 +27,21 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-
     <activity
         android:name=".presentation.history.HistoryActivity"
         android:exported="true"
         android:screenOrientation="nosensor"
         tools:ignore="DiscouragedApi" />
-
     <activity
         android:name=".presentation.register.RegisterActivity"
         android:exported="true"
         android:screenOrientation="nosensor"
         tools:ignore="DiscouragedApi" />
-
     <activity
         android:name=".presentation.main.MainActivity"
         android:exported="true"
         android:screenOrientation="nosensor"
         tools:ignore="DiscouragedApi" />
-
   </application>
 
 </manifest>
