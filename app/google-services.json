@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "55119038482",
+    "project_id": "smartpaddy",
+    "storage_bucket": "smartpaddy.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55119038482:android:b7183f167ef9fa731730cb",
+        "android_client_info": {
+          "package_name": "com.example.smartpaddy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0_kAVsWt_N7K0WH8T3JsStmLYPDuzWHY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55119038482:android:513887f001824f031730cb",
+        "android_client_info": {
+          "package_name": "com.example.storyapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0_kAVsWt_N7K0WH8T3JsStmLYPDuzWHY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

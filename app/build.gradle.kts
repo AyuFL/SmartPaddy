@@ -1,6 +1,7 @@
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.android)
+  id("com.google.gms.google-services")
 }
 
 android {
@@ -71,4 +72,8 @@ dependencies {
 
   // datastore
   implementation(libs.androidx.datastore.preferences)
+
+  // app distribution
+  implementation(platform(libs.firebase.bom))
+  implementation(libs.firebase.analytics)
 }
