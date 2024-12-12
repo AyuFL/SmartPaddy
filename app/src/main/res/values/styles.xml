@@ -2,7 +2,7 @@
 <resources>
   <style name="CustomFABStyle" parent="Widget.MaterialComponents.FloatingActionButton">
     <item name="backgroundTint">@color/green</item>
-    <item name="rippleColor">@color/light_green</item>
+    <item name="rippleColor">?attr/colorTertiary</item>
     <item name="fabSize">normal</item>
     <item name="elevation">8dp</item>
   </style>
