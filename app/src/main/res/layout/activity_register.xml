@@ -127,7 +127,6 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginHorizontal="@dimen/dimen_32"
-        app:endIconMode="password_toggle"
         app:errorEnabled="true"
         tools:alpha="100"
         android:alpha="0"
@@ -155,6 +154,17 @@
         />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <CheckBox
+        android:id="@+id/cb_show_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_password"
+        tools:alpha="100"
+        android:alpha="0"
+        app:layout_constraintStart_toStartOf="@id/passwordEditTextLayout"
+        app:layout_constraintTop_toBottomOf="@id/passwordEditTextLayout"
+        />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_register"
         android:layout_width="0dp"
@@ -169,7 +179,7 @@
         android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordEditTextLayout"
+        app:layout_constraintTop_toBottomOf="@id/cb_show_password"
         />
 
     <TextView

@@ -30,15 +30,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_16"
+        android:alpha="0"
         android:text="@string/login"
         android:textColor="@color/black"
         android:textSize="@dimen/font_24"
-        android:alpha="0"
-        tools:alpha="100"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_logo"
+        tools:alpha="100"
         />
 
     <TextView
@@ -46,12 +46,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_32"
+        android:alpha="0"
         android:text="@string/email_address"
         android:textStyle="bold"
-        tools:alpha="100"
-        android:alpha="0"
-        app:layout_constraintTop_toBottomOf="@id/tv_login_title"
         app:layout_constraintStart_toStartOf="@+id/et_email"
+        app:layout_constraintTop_toBottomOf="@id/tv_login_title"
+        tools:alpha="100"
         />
 
     <EditText
@@ -60,18 +60,18 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_32"
         android:layout_marginTop="@dimen/dimen_16"
-        android:background="@drawable/edit_text_background"
-        android:importantForAutofill="no"
-        android:padding="@dimen/dimen_16"
-        tools:alpha="100"
         android:alpha="0"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/black"
+        android:background="@drawable/edit_text_background"
         android:drawableStart="@drawable/ic_email"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:padding="@dimen/dimen_16"
+        android:textColor="@color/black"
         android:textColorHint="@color/brown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_email"
+        tools:alpha="100"
         />
 
     <TextView
@@ -79,12 +79,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_16"
+        android:alpha="0"
         android:text="@string/password"
         android:textStyle="bold"
-        tools:alpha="100"
-        android:alpha="0"
-        app:layout_constraintTop_toBottomOf="@id/et_email"
         app:layout_constraintStart_toStartOf="@+id/et_email"
+        app:layout_constraintTop_toBottomOf="@id/et_email"
+        tools:alpha="100"
         />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -93,8 +93,6 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginHorizontal="@dimen/dimen_32"
-        app:endIconMode="password_toggle"
-        tools:alpha="100"
         android:alpha="0"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,6 +100,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_password"
         app:startIconDrawable="@drawable/ic_password"
         app:startIconTint="@color/brown"
+        tools:alpha="100"
         >
 
       <com.example.smartpaddy.presentation.PasswordValidation
@@ -111,8 +110,8 @@
           android:layout_marginTop="@dimen/dimen_16"
           android:background="@drawable/edit_text_background"
           android:importantForAutofill="no"
-          android:padding="@dimen/dimen_16"
           android:inputType="textPassword"
+          android:padding="@dimen/dimen_16"
           android:textColor="@color/black"
           android:textColorHint="@color/brown"
           app:layout_constraintEnd_toEndOf="parent"
@@ -121,21 +120,32 @@
           />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <CheckBox
+        android:id="@+id/cb_show_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_password"
+        tools:alpha="100"
+        android:alpha="0"
+        app:layout_constraintStart_toStartOf="@id/passwordEditTextLayout"
+        app:layout_constraintTop_toBottomOf="@id/passwordEditTextLayout"
+        />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_32"
         android:layout_marginTop="@dimen/dimen_24"
-        android:background="@drawable/button_style"
-        android:text="@string/login"
-        tools:alpha="100"
         android:alpha="0"
-        android:textColor="@color/white"
+        android:background="@drawable/button_style"
         android:fontFamily="@font/bold"
+        android:text="@string/login"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordEditTextLayout"
+        app:layout_constraintTop_toBottomOf="@id/cb_show_password"
+        tools:alpha="100"
         />
 
     <TextView
@@ -143,14 +153,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_16"
-        android:text="@string/don_t_have_an_account_register_here"
-        android:clickable="true"
-        android:textColor="@color/gray"
-        tools:alpha="100"
         android:alpha="0"
+        android:clickable="true"
+        android:text="@string/don_t_have_an_account_register_here"
+        android:textColor="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_login"
+        tools:alpha="100"
         />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
