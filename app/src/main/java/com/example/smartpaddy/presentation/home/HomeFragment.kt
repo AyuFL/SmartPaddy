@@ -18,6 +18,8 @@ import com.example.smartpaddy.presentation.history.HistoryActivity
 import com.example.smartpaddy.presentation.home.adapter.HomeAdapter
 import com.example.smartpaddy.presentation.login.LoginActivity
 import com.example.smartpaddy.utils.Constants
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import java.util.Locale
 
 class HomeFragment : Fragment() {
 
@@ -68,10 +70,11 @@ class HomeFragment : Fragment() {
   }
 
   private fun greetings() {
-    val sharedPreferences =
-      requireContext().getSharedPreferences(Constants.login, MODE_PRIVATE)
+    val sharedPreferences = requireContext().getSharedPreferences(Constants.login, MODE_PRIVATE)
     val token = sharedPreferences.getString(Constants.token, null)
     val name = sharedPreferences.getString(Constants.name, "Guest")
+      ?.split(" ")
+      ?.joinToString(" ") { it -> it.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } }
 
     if (token != null) {
       binding.tvUsername.text = getString(R.string.greetings, name)
@@ -81,16 +84,27 @@ class HomeFragment : Fragment() {
   }
 
   private fun logoutUser(context: Context) {
-    val sharedPreferences = context.getSharedPreferences(Constants.login, MODE_PRIVATE)
-    with(sharedPreferences.edit()) {
-      remove(Constants.name)
-      remove(Constants.email)
-      remove(Constants.token)
-      remove(Constants.login)
-      apply()
-    }
-    val intent = Intent(context, LoginActivity::class.java)
-    startActivity(intent)
+    MaterialAlertDialogBuilder(context)
+      .setTitle(getString(R.string.logout_confirmation))
+      .setMessage(getString(R.string.logout_message))
+      .setPositiveButton(getString(R.string.yes)) { _, _ ->
+        val sharedPreferences = context.getSharedPreferences(Constants.login, MODE_PRIVATE)
+        with(sharedPreferences.edit()) {
+          remove(Constants.name)
+          remove(Constants.email)
+          remove(Constants.token)
+          remove(Constants.login)
+          apply()
+        }
+        val intent = Intent(context, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        activity?.finish()
+      }
+      .setNegativeButton(getString(R.string.no)) { dialog, _ ->
+        dialog.dismiss()
+      }
+      .show()
   }
 
   private fun showLoading(isLoading: Boolean) {

@@ -1,5 +1,7 @@
 package com.example.smartpaddy.presentation.login
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -25,6 +27,8 @@ class LoginActivity : AppCompatActivity() {
     binding = ActivityLoginBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
+
+    playAnimation()
     observeLoginResponse()
 
     if (isLoggedIn()) {
@@ -38,6 +42,23 @@ class LoginActivity : AppCompatActivity() {
 
     binding.tvRegister.setOnClickListener {
       goToRegisterPage(it)
+    }
+  }
+
+  private fun playAnimation() {
+    val title = ObjectAnimator.ofFloat(binding.tvLoginTitle, View.ALPHA, 1f).setDuration(700)
+    val emailTitle = ObjectAnimator.ofFloat(binding.tvEmail, View.ALPHA, 1f).setDuration(700)
+    val email = ObjectAnimator.ofFloat(binding.etEmail, View.ALPHA, 1f).setDuration(700)
+    val passwordTitle =
+      ObjectAnimator.ofFloat(binding.tvPassword, View.ALPHA, 1f).setDuration(700)
+    val password =
+      ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(700)
+    val loginButton = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(700)
+    val register = ObjectAnimator.ofFloat(binding.tvRegister, View.ALPHA, 1f).setDuration(700)
+
+    AnimatorSet().apply {
+      playSequentially(title, emailTitle, email, passwordTitle, password, loginButton, register)
+      start()
     }
   }
 
@@ -75,10 +96,11 @@ class LoginActivity : AppCompatActivity() {
 
   private fun validateLogin() {
     val email = binding.etEmail.text.toString()
-    val password = binding.etPassword.text.toString()
+    val password = binding.etPassword.getPassword()
 
     if (email.isEmpty() || password.isEmpty()) {
       Toast.makeText(this, R.string.email_pass_empty, Toast.LENGTH_SHORT).show()
+
       return
     }
 

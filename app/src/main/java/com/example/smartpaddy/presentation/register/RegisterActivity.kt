@@ -1,9 +1,13 @@
 package com.example.smartpaddy.presentation.register
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
+import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +28,17 @@ class RegisterActivity : AppCompatActivity() {
     binding = ActivityRegisterBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
+    playAnimation()
+
+    binding.etName.setOnEditorActionListener { _, actionId, _ ->
+      if (actionId == EditorInfo.IME_ACTION_DONE) {
+        binding.etEmail.requestFocus()
+        true
+      } else {
+        false
+      }
+    }
+
     binding.btnRegister.setOnClickListener {
       if (!registerClicked) {
         registerClicked = true
@@ -36,6 +51,25 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     observeViewModel()
+  }
+
+  private fun playAnimation() {
+    val title = ObjectAnimator.ofFloat(binding.tvRegisterTitle, View.ALPHA, 1f).setDuration(700)
+    val nameTitle = ObjectAnimator.ofFloat(binding.tvName, View.ALPHA, 1f).setDuration(700)
+    val name = ObjectAnimator.ofFloat(binding.etName, View.ALPHA, 1f).setDuration(700)
+    val emailTitle = ObjectAnimator.ofFloat(binding.tvEmail, View.ALPHA, 1f).setDuration(700)
+    val email = ObjectAnimator.ofFloat(binding.etEmail, View.ALPHA, 1f).setDuration(700)
+    val passwordTitle =
+      ObjectAnimator.ofFloat(binding.tvPassword, View.ALPHA, 1f).setDuration(700)
+    val password =
+      ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(700)
+    val registerButton = ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(700)
+    val loginButton = ObjectAnimator.ofFloat(binding.tvLogin, View.ALPHA, 1f).setDuration(700)
+
+    AnimatorSet().apply {
+      playSequentially(title, nameTitle, name, emailTitle, email, passwordTitle, password, registerButton, loginButton)
+      start()
+    }
   }
 
   private fun observeViewModel() {
@@ -59,7 +93,7 @@ class RegisterActivity : AppCompatActivity() {
   private fun validateAndRegister() {
     val name = binding.etName.text.toString().trim()
     val email = binding.etEmail.text.toString().trim()
-    val password = binding.etPassword.text.toString().trim()
+    val password = binding.etPassword.getPassword()
 
     when {
       name.isEmpty() || email.isEmpty() || password.isEmpty() -> {

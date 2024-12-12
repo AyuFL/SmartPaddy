@@ -38,5 +38,10 @@
   <string name="gejala">Gejala</string>
   <string name="cara_menangani">Cara Menangani</string>
   <string name="history_detail">History Detail</string>
+  <string name="error">Password must be at least 8 characters including a capital letters, number, and symbol.</string>
+  <string name="logout_confirmation">Logout</string>
+  <string name="logout_message">Are you sure you want to logout?</string>
+  <string name="yes">Yes</string>
+  <string name="no">No</string>
   <string name="penjelasan">Penjelasan</string>
 </resources>
