@@ -38,7 +38,14 @@ Machine Learning Team :
 - Scikit-Learn
 - Matplotlib
 
-Mobile Dev Team :
+Mobile Development Team :
+- Android Studio
+- ⁠Retrofit
+- ⁠GSON Converter
+- ⁠Logging Interceptor
+- ⁠View Pager 2
+- ⁠Glide
+- ⁠Firebase App Distribution
 
 ## Cloud Architecture
 <img src="image/Cloud Architecture.jpeg" width=700>
