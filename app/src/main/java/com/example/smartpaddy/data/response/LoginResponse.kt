@@ -9,7 +9,7 @@ data class LoginResponse(
   @field:SerializedName("status")
   val status: String,
 
-  @field:SerializedName("token")
+  @field:SerializedName("user_id")
   val token: String? = null,
 
   @field:SerializedName("name")

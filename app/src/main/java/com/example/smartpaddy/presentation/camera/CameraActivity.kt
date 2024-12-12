@@ -104,7 +104,7 @@ class CameraActivity : AppCompatActivity() {
     // binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
   }
 
-  fun showToast(context: Context, message: String) {
+  private fun showToast(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
   }
 

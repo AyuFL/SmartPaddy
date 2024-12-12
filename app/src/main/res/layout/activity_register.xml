@@ -33,6 +33,8 @@
         android:text="@string/register"
         android:textColor="@color/black"
         android:textSize="@dimen/font_24"
+        tools:alpha="100"
+        android:alpha="0"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_32"
         android:text="@string/name"
+        tools:alpha="100"
+        android:alpha="0"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/tv_register_title"
         app:layout_constraintStart_toStartOf="@+id/et_email"
@@ -59,6 +63,8 @@
         android:background="@drawable/edit_text_background"
         android:importantForAutofill="no"
         android:padding="@dimen/dimen_16"
+        tools:alpha="100"
+        android:alpha="0"
         android:textColor="@color/black"
         android:drawableStart="@drawable/ic_person"
         android:textColorHint="@color/brown"
@@ -76,6 +82,8 @@
         android:layout_marginTop="@dimen/dimen_16"
         android:text="@string/email_address"
         android:textStyle="bold"
+        tools:alpha="100"
+        android:alpha="0"
         app:layout_constraintTop_toBottomOf="@id/et_name"
         app:layout_constraintStart_toStartOf="@+id/et_email"
         />
@@ -89,6 +97,8 @@
         android:background="@drawable/edit_text_background"
         android:importantForAutofill="no"
         android:padding="@dimen/dimen_16"
+        tools:alpha="100"
+        android:alpha="0"
         android:inputType="textEmailAddress"
         android:textColor="@color/black"
         android:drawableStart="@drawable/ic_email"
@@ -104,6 +114,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_16"
         android:text="@string/password"
+        tools:alpha="100"
+        android:alpha="0"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/et_email"
         app:layout_constraintStart_toStartOf="@+id/et_email"
@@ -117,6 +129,8 @@
         android:layout_marginHorizontal="@dimen/dimen_32"
         app:endIconMode="password_toggle"
         app:errorEnabled="true"
+        tools:alpha="100"
+        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_password"
@@ -151,23 +165,12 @@
         android:textColor="@color/white"
         android:fontFamily="@font/bold"
         android:text="@string/register"
+        tools:alpha="100"
+        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordEditTextLayout"
         />
-
-<!--    <ImageButton-->
-<!--        android:id="@+id/btn_google"-->
-<!--        android:layout_width="@dimen/dimen_50"-->
-<!--        android:layout_height="@dimen/dimen_50"-->
-<!--        android:layout_marginTop="@dimen/dimen_24"-->
-<!--        android:background="@null"-->
-<!--        android:importantForAccessibility="no"-->
-<!--        android:src="@drawable/ic_google"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/btn_register"-->
-<!--        />-->
 
     <TextView
         android:id="@+id/tv_register"
@@ -176,6 +179,8 @@
         android:layout_marginTop="@dimen/dimen_16"
         android:text="@string/already_have_an_account"
         android:textColor="@color/gray"
+        tools:alpha="100"
+        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_register"
@@ -189,6 +194,8 @@
         android:text="@string/login_here"
         android:textColor="@color/orange"
         android:textStyle="bold"
+        tools:alpha="100"
+        android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_register"
