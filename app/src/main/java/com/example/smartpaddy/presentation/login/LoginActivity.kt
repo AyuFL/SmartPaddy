@@ -74,10 +74,11 @@ class LoginActivity : AppCompatActivity() {
 
   private fun validateLogin() {
     val email = binding.etEmail.text.toString()
-    val password = binding.etPassword.text.toString()
+    val password = binding.etPassword.getPassword()
 
     if (email.isEmpty() || password.isEmpty()) {
       Toast.makeText(this, R.string.email_pass_empty, Toast.LENGTH_SHORT).show()
+
       return
     }
 
