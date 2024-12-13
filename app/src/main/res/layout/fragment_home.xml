@@ -63,7 +63,7 @@
       android:layout_marginTop="30dp"
       android:textColor="@color/brown"
       android:fontFamily="@font/bold"
-      android:padding="24dp"
+      android:paddingHorizontal="24dp"
       android:gravity="center"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
