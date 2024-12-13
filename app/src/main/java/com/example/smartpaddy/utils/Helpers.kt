@@ -1,4 +1,5 @@
 package com.example.smartpaddy.utils
+
 import android.content.ContentValues
 import android.content.Context
 import android.net.Uri

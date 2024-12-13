@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartpaddy.R
 import com.example.smartpaddy.databinding.FragmentHomeBinding
+import com.example.smartpaddy.presentation.camera.CameraActivity
 import com.example.smartpaddy.presentation.history.HistoryActivity
 import com.example.smartpaddy.presentation.home.adapter.HomeAdapter
 import com.example.smartpaddy.presentation.login.LoginActivity
@@ -42,12 +42,19 @@ class HomeFragment : Fragment() {
 
     val adapter = HomeAdapter()
 
+    if (viewModel.history.value?.data.isNullOrEmpty()) {
+      historyIsEmpty()
+    }
+
     viewModel.history.observe(viewLifecycleOwner) { history ->
       showLoading(false)
-      Log.e("bella", "${history.data}")
-      binding.paddyCountTv.text = history.data.size.toString()
 
-      adapter.setHistoryList(history.data)
+      if (history.data.isNotEmpty()) {
+        binding.paddyCountTv.text = history.data.size.toString()
+        historyIsNotEmpty()
+
+        adapter.setHistoryList(history.data)
+      }
     }
 
     viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
@@ -127,5 +134,25 @@ class HomeFragment : Fragment() {
     if (token != "token" && token != null) {
       viewModel.getHistory(token)
     }
+  }
+
+  private fun historyIsEmpty() {
+    binding.homeTitleTv.text = getString(R.string.wow_i_guess_you_have_a_healthy_rice_fields)
+    binding.cameraBtn.visibility = View.VISIBLE
+    binding.historyBtnTv.visibility = View.GONE
+    binding.historyRv.visibility = View.GONE
+
+    binding.cameraBtn.setOnClickListener {
+      val intent = Intent(requireContext(), CameraActivity::class.java)
+      startActivity(intent)
+    }
+  }
+
+  private fun historyIsNotEmpty() {
+    binding.homeTitleTv.text = getString(R.string.you_have_been_detected)
+    binding.homeSubtitleTv.visibility = View.VISIBLE
+    binding.cameraBtn.visibility = View.GONE
+    binding.historyBtnTv.visibility = View.VISIBLE
+    binding.historyRv.visibility = View.VISIBLE
   }
 }

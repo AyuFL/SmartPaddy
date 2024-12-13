@@ -49,7 +49,8 @@ class LoginActivity : AppCompatActivity() {
       if (isChecked) {
         binding.etPassword.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
       } else {
-        binding.etPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        binding.etPassword.inputType =
+          InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
       }
       binding.etPassword.text?.let { binding.etPassword.setSelection(it.length) }
     }
@@ -65,10 +66,20 @@ class LoginActivity : AppCompatActivity() {
       ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(300)
     val loginButton = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA, 1f).setDuration(300)
     val register = ObjectAnimator.ofFloat(binding.tvRegister, View.ALPHA, 1f).setDuration(300)
-    val showPassword = ObjectAnimator.ofFloat(binding.cbShowPassword, View.ALPHA, 1f).setDuration(300)
+    val showPassword =
+      ObjectAnimator.ofFloat(binding.cbShowPassword, View.ALPHA, 1f).setDuration(300)
 
     AnimatorSet().apply {
-      playSequentially(title, emailTitle, email, passwordTitle, password, showPassword, loginButton, register)
+      playSequentially(
+        title,
+        emailTitle,
+        email,
+        passwordTitle,
+        password,
+        showPassword,
+        loginButton,
+        register
+      )
       start()
     }
   }

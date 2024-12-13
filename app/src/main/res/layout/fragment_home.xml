@@ -58,11 +58,13 @@
       android:id="@+id/home_title_tv"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/you_have_been_detected"
+      android:text="@string/wow_i_guess_you_have_a_healthy_rice_fields"
       android:textSize="@dimen/font_20"
       android:layout_marginTop="30dp"
       android:textColor="@color/brown"
       android:fontFamily="@font/bold"
+      android:padding="24dp"
+      android:gravity="center"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -97,6 +99,24 @@
         />
   </LinearLayout>
 
+  <androidx.appcompat.widget.AppCompatButton
+      android:id="@+id/camera_btn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:background="@drawable/button_green"
+      android:fontFamily="@font/extrabold"
+      android:paddingHorizontal="24dp"
+      android:text="Click here to make sure!"
+      android:textColor="@color/white"
+      android:textSize="16sp"
+      android:layout_marginTop="30dp"
+      android:visibility="visible"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/paddy_count_ll"
+      />
+
   <TextView
       android:id="@+id/home_subtitle_tv"
       android:layout_width="wrap_content"
@@ -106,6 +126,7 @@
       android:layout_marginTop="30dp"
       android:textColor="@color/brown"
       android:fontFamily="@font/semibold"
+      android:visibility="gone"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/paddy_count_ll"
@@ -120,6 +141,7 @@
       android:fontFamily="@font/medium"
       android:textSize="@dimen/font_22"
       android:textColor="@color/brown"
+      android:visibility="gone"
       app:drawableEndCompat="@drawable/baseline_keyboard_arrow_right_24"
       android:layout_marginTop="30dp"
       android:paddingHorizontal="24dp"
@@ -131,6 +153,7 @@
       android:id="@+id/history_rv"
       android:layout_width="match_parent"
       android:layout_height="0dp"
+      android:visibility="gone"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
