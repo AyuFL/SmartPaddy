@@ -43,5 +43,6 @@
   <string name="logout_message">Are you sure you want to logout?</string>
   <string name="yes">Yes</string>
   <string name="no">No</string>
+  <string name="show_password">Show password</string>
   <string name="penjelasan">Penjelasan</string>
 </resources>

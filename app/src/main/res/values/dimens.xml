@@ -18,4 +18,6 @@
   <dimen name="font_22">22sp</dimen>
   <dimen name="dimen_10">10dp</dimen>
   <dimen name="dimen_150">150dp</dimen>
+  <dimen name="dimen_20">20dp</dimen>
+  <dimen name="dimen_5">5dp</dimen>
 </resources>

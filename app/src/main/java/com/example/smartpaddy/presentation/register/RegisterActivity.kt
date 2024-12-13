@@ -4,6 +4,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -49,6 +50,15 @@ class RegisterActivity : AppCompatActivity() {
       goToLoginPage()
     }
 
+    binding.cbShowPassword.setOnCheckedChangeListener { _, isChecked ->
+      if (isChecked) {
+        binding.etPassword.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+      } else {
+        binding.etPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+      }
+      binding.etPassword.text?.let { binding.etPassword.setSelection(it.length) }
+    }
+
     observeViewModel()
   }
 
@@ -64,9 +74,10 @@ class RegisterActivity : AppCompatActivity() {
       ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(300)
     val registerButton = ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(300)
     val loginButton = ObjectAnimator.ofFloat(binding.tvLogin, View.ALPHA, 1f).setDuration(300)
+    val showPassword = ObjectAnimator.ofFloat(binding.cbShowPassword, View.ALPHA, 1f).setDuration(300)
 
     AnimatorSet().apply {
-      playSequentially(title, nameTitle, name, emailTitle, email, passwordTitle, password, registerButton, loginButton)
+      playSequentially(title, nameTitle, name, emailTitle, email, passwordTitle, password, showPassword, registerButton, loginButton)
       start()
     }
   }
