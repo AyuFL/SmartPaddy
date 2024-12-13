@@ -50,6 +50,8 @@ Mobile Development Team :
 ## Cloud Architecture
 <img src="image/Cloud Architecture.jpeg" width=700>
 
+In this project, CC team decide to use Cloud Run for deploying the RESTful API backend. We also used FireStore as our database for storing our prediction data. We also created 2 buckets. One for storing the ML Model which will be downloaded by the API when there are changes, The other one is for storing our prediction image. 
+
 ## Repositories
 
 |    Branch Name     |                       Branch Link                             |
