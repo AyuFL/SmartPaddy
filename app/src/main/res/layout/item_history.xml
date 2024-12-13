@@ -54,6 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:padding="12dp"
+        android:layout_marginHorizontal="@dimen/dimen_5"
         android:text="Lorem ipsum odor amet, consectetuer adipiscing elit. Facilisis tempor cursus feugiat ut quisque aptent a velit."
         android:maxLines="2"
         app:layout_constraintEnd_toEndOf="parent"
